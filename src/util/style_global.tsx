@@ -37,6 +37,14 @@ const STYLE_GLOBAL = StyleSheet.create({
         fontSize: 12,
         fontFamily: 'Poppins-Regular'
     },
+    MINI_TITTLE: {
+        fontSize: 12,
+        fontFamily: 'Poppins-Medium'
+    },
+    MINI_TEXT: {
+        fontSize: 10,
+        fontFamily: 'Poppins-Regular'
+    },
     PRIMARI_COLOR: {
         color: '#703B26'
     },
@@ -58,6 +66,9 @@ const STYLE_GLOBAL = StyleSheet.create({
     GREEN_TER_COLOR: {
         color: '#26C165'
     },
+    RED_COLOR: {
+        color: '#EB5757'
+    },
     WHITE_COLOR: {
         color: '#fff'
     },
@@ -69,6 +80,9 @@ const STYLE_GLOBAL = StyleSheet.create({
     },
     BACKGROUND_SEKUNDER: {
         backgroundColor: '#A86741'
+    },
+    BACKGROUND_TERSIER: {
+        backgroundColor: '#D8B186'
     },
     ENTER10: {
         height: 10,
