@@ -84,6 +84,12 @@ const STYLE_GLOBAL = StyleSheet.create({
     BACKGROUND_TERSIER: {
         backgroundColor: '#D8B186'
     },
+    BACKGROUND_GREEN: {
+        backgroundColor: '#3F7623'
+    },
+    BACKGROUND_RED: {
+        backgroundColor: '#EB5757'
+    },
     ENTER10: {
         height: 10,
     },

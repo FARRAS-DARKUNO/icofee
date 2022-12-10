@@ -3,9 +3,7 @@ import {
     TouchableOpacity,
     StyleSheet,
     Text,
-    Image
 } from "react-native"
-import { CardProps } from "../../util/interface"
 import STYLE_GLOBAL from "../../util/style_global"
 import Icons from "react-native-vector-icons/MaterialCommunityIcons";
 

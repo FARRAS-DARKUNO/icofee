@@ -6,6 +6,7 @@ import {
 import Button from './src/component/button';
 import STYLE_GLOBAL from './src/util/style_global';
 import Card from './src/component/card';
+import CheckVerified from './src/component/verification/ceck_verified';
 
 
 const App = () => {
@@ -37,6 +38,10 @@ const App = () => {
         <Card.ChoiceAdd />
         <View style={STYLE_GLOBAL.ENTER20} />
         <Card.ChoiceUpgrade />
+        <View style={STYLE_GLOBAL.ENTER20} />
+        <CheckVerified.BelumTerverifikasi />
+        <View style={STYLE_GLOBAL.ENTER20} />
+        <CheckVerified.Terverifikasi />
         <View style={STYLE_GLOBAL.ENTER20} />
       </ScrollView>
     </View>
