@@ -19,6 +19,11 @@ export interface CardProps {
     isUpgrade? : number,
     price? : string
     persen? : string
+}
 
-
+export interface BoxInputData {
+    tittle: string,
+    input? : ReactSetter<string>,
+    placeholders? : string,
+    values? : any,
 }
