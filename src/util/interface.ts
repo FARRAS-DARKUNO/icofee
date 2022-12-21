@@ -24,6 +24,14 @@ export interface CardProps {
 export interface BoxInputData {
     tittle: string,
     input? : ReactSetter<string>,
+    picker? : ReactSetter<any>,
     placeholders? : string,
     values? : any,
+}
+
+export interface HeaderData {
+    image? : string,
+    name : string,
+    action? () : any,
+    remove? () : any
 }
