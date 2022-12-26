@@ -4,7 +4,7 @@ import {
     StyleSheet
 } from "react-native"
 
-const Camera = () => {
+const CameraAi = () => {
     return (
         <Text> this Camera</Text>
     )
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Camera
+export default CameraAi
