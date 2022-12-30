@@ -25,6 +25,10 @@ const STYLE_GLOBAL = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Poppins-SemiBold'
     },
+    INFORMATION: {
+        fontSize: 18,
+        fontFamily: 'Poppins-Bold'
+    },
     USER_TITTLE: {
         fontSize: 15,
         fontFamily: 'Poppins-Medium'
