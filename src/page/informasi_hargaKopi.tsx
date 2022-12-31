@@ -1,20 +1,81 @@
 import React from "react"
 import {
     Text,
-    StyleSheet
+    StyleSheet,
+    SafeAreaView,
+    View,
+    TouchableOpacity
 } from "react-native"
+import STYLE_GLOBAL from "../util/style_global"
+import Header from "../component/header"
+import { useNavigation } from "@react-navigation/native"
+import Icons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const InformasiHargaKopi = () => {
+
+    const navigate = useNavigation()
+
+    const goBack = () => navigate.goBack()
+
+    const card = [
+        {
+            icon: "leaf",
+            name: "Biji Kopi Mentah",
+            action: () => console.log('Masuk'),
+            color: "#DEEBD4"
+        },
+        {
+            icon: "coffee",
+            name: "Olahan Kopi",
+            action: () => console.log('Masuk'),
+            color: "#E0D8D1",
+        }
+    ]
+
     return (
-        <Text> this InformasiHargaKopi</Text>
+        <SafeAreaView style={[styles.container, STYLE_GLOBAL.BACKGROUND_WHITE]}>
+            <Header.BackHeader name="Informasi Harga Kopi" action={goBack} />
+            <View style={STYLE_GLOBAL.ENTER30} />
+            <View style={styles.wrap}>
+                {
+                    card.map(data => (
+                        <TouchableOpacity style={[styles.box, { backgroundColor: data.color }]} onPress={data.action} key={data.name}>
+                            <Icons name={data.icon} size={30} color="#000" />
+                            <Text style={[STYLE_GLOBAL.BLACK_COLOR, STYLE_GLOBAL.CARD_GRID]}>
+                                {data.name}
+                            </Text>
+                        </TouchableOpacity>
+                    ))
+                }
+
+            </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingVertical: 30,
     },
+    wrap: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        paddingHorizontal: 20,
+        marginBottom: 30,
+    },
+    box: {
+        height: 90,
+        width: '49%',
+        borderRadius: 10,
+        elevation: 20,
+        shadowColor: '#000',
+        justifyContent: "space-between",
+        alignItems: 'center',
+        flexDirection: "row",
+        paddingHorizontal: 30
+    }
 })
 
 export default InformasiHargaKopi

@@ -8,13 +8,13 @@ import {
 import STYLE_GLOBAL from "../../util/style_global"
 import { CardProps } from "../../util/interface"
 
-const DinamicCard = ({ image, tittle }: CardProps) => {
+const DinamicCard = ({ image, tittle, response }: CardProps) => {
 
     const dummie = () => console.log("masuk")
 
 
     return (
-        <TouchableOpacity style={[styles.box, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={dummie}>
+        <TouchableOpacity style={[styles.box, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={response}>
             <View style={styles.containBox50}>
                 <Image source={{ uri: image }} style={styles.image} />
             </View>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     containBox50: {
         height: '100%',
-        width: "49.5%",
+        width: "50%",
         justifyContent: 'center',
         alignItems: 'center',
     }
