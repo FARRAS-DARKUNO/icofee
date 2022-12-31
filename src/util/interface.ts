@@ -33,6 +33,8 @@ export interface BoxInputData {
 export interface HeaderData {
     image? : string,
     name : string,
+    nicname? : string,
     action? () : any,
     remove? () : any,
+    status? : number
 }

@@ -32,8 +32,8 @@ const BelumTerverifikasi = () => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 190,
-        height: 30,
+        width: 180,
+        height: 25,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center'
