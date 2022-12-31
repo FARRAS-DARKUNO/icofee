@@ -27,11 +27,12 @@ export interface BoxInputData {
     picker? : ReactSetter<any>,
     placeholders? : string,
     values? : any,
+    dropList? : any
 }
 
 export interface HeaderData {
     image? : string,
     name : string,
     action? () : any,
-    remove? () : any
+    remove? () : any,
 }

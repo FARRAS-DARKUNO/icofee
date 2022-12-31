@@ -6,10 +6,11 @@ import {
 } from "react-native"
 import STYLE_GLOBAL from "../../util/style_global"
 import Icons from "react-native-vector-icons/MaterialCommunityIcons";
+import { ReactSetter } from "../../util/interface";
 
 const dummie = () => console.log("masuk")
 
-export const ChoiceAdd = () => {
+export const ChoiceAdd = ({ action }: Props) => {
     return (
         <View style={styles.container}>
             <View style={[styles.box50, STYLE_GLOBAL.BACKGROUND_TERSIER]}>
@@ -18,7 +19,7 @@ export const ChoiceAdd = () => {
                     Tambah Produk
                 </Text>
             </View>
-            <TouchableOpacity style={[styles.box50, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={dummie}>
+            <TouchableOpacity style={[styles.box50, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={() => action('upgrade')}>
                 <Icons name={'upload'} size={30} color={STYLE_GLOBAL.SECONDARY_COLOR.color} />
                 <Text style={[STYLE_GLOBAL.SECONDARY_COLOR, STYLE_GLOBAL.CARD_GRID]}>
                     Update Produk
@@ -28,10 +29,10 @@ export const ChoiceAdd = () => {
     )
 }
 
-export const ChoiceUpgrade = () => {
+export const ChoiceUpgrade = ({ action }: Props) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={[styles.box50, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={dummie}>
+            <TouchableOpacity style={[styles.box50, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={() => action('add')}>
                 <Icons name={'plus'} size={30} color={STYLE_GLOBAL.SECONDARY_COLOR.color} />
                 <Text style={[STYLE_GLOBAL.SECONDARY_COLOR, STYLE_GLOBAL.CARD_GRID]}>
                     Tambah Produk
@@ -70,3 +71,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30
     }
 });
+
+interface Props {
+    action: ReactSetter<string>
+}

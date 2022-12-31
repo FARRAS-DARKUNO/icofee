@@ -10,9 +10,9 @@ import { BoxInputData } from '../../util/interface';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const DropdownInputs = ({ input, placeholders, tittle, values }: BoxInputData) => {
+const DropdownInputs = ({ input, placeholders, tittle, values, dropList }: BoxInputData) => {
 
-    const countries = ["Egypt", "Canada", "Australia", "Ireland"]
+
 
     return (
         <View style={styles.container}>
@@ -29,9 +29,10 @@ const DropdownInputs = ({ input, placeholders, tittle, values }: BoxInputData) =
                         return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
                     }}
                     dropdownIconPosition="right"
-                    data={countries}
+                    data={dropList}
                     onSelect={(selectedItem, index) => {
-                        console.log(selectedItem, index)
+                        //@ts-ignore
+                        input(selectedItem)
                     }}
                     buttonTextAfterSelection={(selectedItem, index) => {
                         // text represented after item is selected
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         paddingHorizontal: 20,
+        marginBottom: 10,
     },
     input: {
         backgroundColor: '#fff',

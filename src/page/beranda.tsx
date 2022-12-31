@@ -1,7 +1,6 @@
 import React from "react"
 import {
     StyleSheet,
-    View,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -10,7 +9,6 @@ import Header from "../component/header"
 import STYLE_GLOBAL from "../util/style_global"
 import BerandaCm from "../component/beranda_page"
 import Card from "../component/card"
-import { getWeather, dailyForecast, showWeather, getLocation } from 'react-native-weather-api';
 
 const Beranda = () => {
 

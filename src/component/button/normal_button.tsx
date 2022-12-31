@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 20,
+        elevation: 10,
         shadowColor: '#000',
     }
 });

@@ -13,8 +13,6 @@ import Button from '../button';
 
 const ImagePickerInputs = ({ picker, placeholders, tittle, values }: BoxInputData) => {
 
-    const [imagePicker, setImagePicker] = useState<any>(null);
-
     const option: any = {
         title: 'Pilih Gambar',
         type: 'library',
@@ -73,6 +71,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         paddingHorizontal: 20,
+        marginBottom: 10,
     },
     input: {
         // backgroundColor: 'red',

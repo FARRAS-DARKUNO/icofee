@@ -19,7 +19,7 @@ const TextInputs = ({ input, placeholders, tittle, values }: BoxInputData) => {
             </View>
             <View style={{ flex: 1 }}>
                 <TextInput
-                    style={[styles.input, STYLE_GLOBAL.BLACK_COLOR]}
+                    style={[styles.input, STYLE_GLOBAL.BLACK_COLOR, STYLE_GLOBAL.PAGE]}
                     onChangeText={input}
                     value={values}
                     placeholder={placeholders}
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         paddingHorizontal: 20,
+        marginBottom: 10,
     },
     input: {
         // backgroundColor: 'red',
