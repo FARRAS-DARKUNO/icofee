@@ -4,7 +4,7 @@ import {
     StyleSheet
 } from "react-native"
 
-const InformasiArtikel = () => {
+const DetailArtikel = () => {
     return (
         <Text> this InformasiArtikel</Text>
     )
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default InformasiArtikel
+export default DetailArtikel

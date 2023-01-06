@@ -25,7 +25,8 @@ const Grip = () => {
         {
             image: "https://res.cloudinary.com/diyu8lkwy/image/upload/v1672509632/icon/Group_205_tihhke.png",
             tittle: "Informasi Budidaya",
-            respons: () => console.log('Mantapas')
+            //@ts-ignore
+            respons: () => navigate.navigate(NamePage.InformasiBudiDaya)
         },
         {
             image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
