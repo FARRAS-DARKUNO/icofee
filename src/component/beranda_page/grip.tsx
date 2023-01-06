@@ -14,13 +14,13 @@ const Grip = () => {
         {
             image: 'https://res.cloudinary.com/diyu8lkwy/image/upload/v1672509634/icon/Group_203_uitzit.png',
             tittle: "CoffeTera Camera",
-            //@ts-ignore
-            respons: () => navigate.navigate(NamePage.InformasiHargaKopi)
+            respons: () => console.log('Mantapas')
         },
         {
             image: "https://res.cloudinary.com/diyu8lkwy/image/upload/v1672509630/icon/Group_204_nobblh.png",
             tittle: "Informasi Harga",
-            respons: () => console.log('Mantapas')
+            //@ts-ignore
+            respons: () => navigate.navigate(NamePage.InformasiHargaKopi)
         },
         {
             image: "https://res.cloudinary.com/diyu8lkwy/image/upload/v1672509632/icon/Group_205_tihhke.png",

@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: STYLE_GLOBAL.BACKGROUND_SEKUNDER.backgroundColor,
-        elevation: 20,
+        elevation: 10,
         shadowColor: '#000',
         justifyContent: "space-between",
         alignItems: 'center',

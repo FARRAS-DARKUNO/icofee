@@ -10,6 +10,7 @@ import STYLE_GLOBAL from "../util/style_global"
 import Header from "../component/header"
 import { useNavigation } from "@react-navigation/native"
 import Icons from "react-native-vector-icons/MaterialCommunityIcons";
+import NamePage from "../util/namePage"
 
 const InformasiHargaKopi = () => {
 
@@ -21,13 +22,21 @@ const InformasiHargaKopi = () => {
         {
             icon: "leaf",
             name: "Biji Kopi Mentah",
-            action: () => console.log('Masuk'),
+            //@ts-ignore
+            action: () => navigate.navigate(NamePage.ListInformasiHargaKopi, {
+                name: 'Biji Kopi Mentah',
+                id: 1,
+            }),
             color: "#DEEBD4"
         },
         {
             icon: "coffee",
             name: "Olahan Kopi",
-            action: () => console.log('Masuk'),
+            //@ts-ignore
+            action: () => navigate.navigate(NamePage.ListInformasiHargaKopi, {
+                name: 'Olahan Kopi',
+                id: 2,
+            }),
             color: "#E0D8D1",
         }
     ]
