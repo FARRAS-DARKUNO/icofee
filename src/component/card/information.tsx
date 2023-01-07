@@ -14,11 +14,11 @@ const InformationCard = ({ response, tittle, body, image, time }: CardProps) => 
 
     const navigate = useNavigation()
     // @ts-ignore
-    // const gotoDetail = () => navigate.navigate(NamePage.DetailProduk)
+    const gotoDetail = () => navigate.navigate(NamePage.DetailArtikel)
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={response}>
+            <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={gotoDetail}>
                 <View style={styles.img}>
                     <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 9 }} />
                 </View>
