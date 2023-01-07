@@ -11,6 +11,7 @@ import Header from "../component/header"
 import { useNavigation } from "@react-navigation/native"
 import Button from "../component/button"
 import Card from "../component/card"
+import NamePage from "../util/namePage"
 
 const InformasiBudiDaya = () => {
     const navigate = useNavigation()
@@ -22,7 +23,7 @@ const InformasiBudiDaya = () => {
     const listButton = [
         {
             name: 'Informasi Budaya',
-            action: Dummie
+            action: Dummie,
         },
         {
             name: 'Pasar Kopi',
@@ -47,7 +48,11 @@ const InformasiBudiDaya = () => {
             <View style={STYLE_GLOBAL.ENTER20} />
             {
                 listButton.map((data) => (
-                    <Button.NextButton response={data.action} tiitle={data.name} iconLeft={'chevron-right'} key={data.name} />
+                    <Button.NextButton
+                        //@ts-ignore
+                        response={() => navigate.navigate(NamePage.DinamicListInformation, { name: data.name })}
+                        tiitle={data.name} iconLeft={'chevron-right'} key={data.name}
+                    />
                 ))
             }
             <View style={STYLE_GLOBAL.ENTER10} />

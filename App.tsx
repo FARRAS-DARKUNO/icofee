@@ -6,6 +6,7 @@ import NavigationBar from './src/component/navigation_bar';
 import InformasiHargaKopi from './src/page/informasi_hargaKopi';
 import ListInformasiHargaKopi from './src/page/list_informasi_harga_kopi';
 import InformasiBudiDaya from './src/page/informasi_budidaya';
+import DinamicListInformation from './src/page/dinamic_list_information';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const App = () => {
         <Stack.Screen name={NamePage.InformasiHargaKopi} component={InformasiHargaKopi} />
         <Stack.Screen name={NamePage.ListInformasiHargaKopi} component={ListInformasiHargaKopi} />
         <Stack.Screen name={NamePage.InformasiBudiDaya} component={InformasiBudiDaya} />
+        <Stack.Screen name={NamePage.DinamicListInformation} component={DinamicListInformation} />
       </Stack.Navigator>
     </NavigationContainer>
   )
