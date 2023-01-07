@@ -3,7 +3,8 @@ const NamePage = {
     InformasiHargaKopi : "InformasiHargaKopi",
     ListInformasiHargaKopi : 'ListInformasiHargaKopi',
     InformasiBudiDaya : 'InformasiBudiDaya',
-    DinamicListInformation : "DinamicListInformation"
+    DinamicListInformation : "DinamicListInformation",
+    DetailProduk : "DetailProduk",
 }
 
 export default NamePage

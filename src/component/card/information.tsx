@@ -7,8 +7,15 @@ import {
 } from "react-native"
 import { CardProps } from "../../util/interface"
 import STYLE_GLOBAL from "../../util/style_global"
+import { useNavigation } from "@react-navigation/native"
+import NamePage from "../../util/namePage"
 
 const InformationCard = ({ response, tittle, body, image, time }: CardProps) => {
+
+    const navigate = useNavigation()
+    // @ts-ignore
+    // const gotoDetail = () => navigate.navigate(NamePage.DetailProduk)
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={response}>

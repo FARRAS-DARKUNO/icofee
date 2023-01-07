@@ -8,12 +8,18 @@ import {
 } from "react-native"
 import { CardProps } from "../../util/interface"
 import STYLE_GLOBAL from "../../util/style_global"
+import { useNavigation } from "@react-navigation/native"
+import NamePage from "../../util/namePage"
 
 const PriceCard = ({ image, body, response, isUpgrade, price, tittle, persen }: CardProps) => {
 
+    const navigate = useNavigation()
+    // @ts-ignore
+    const gotoDetail = () => navigate.navigate(NamePage.DetailProduk)
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={response}>
+            <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={gotoDetail}>
                 <View style={styles.imageBox}>
                     <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 9 }} />
                 </View>

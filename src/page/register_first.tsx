@@ -1,12 +1,19 @@
 import React from "react"
 import {
     Text,
-    StyleSheet
+    StyleSheet,
+    SafeAreaView
 } from "react-native"
+import Header from "../component/header"
+import { useNavigation } from "@react-navigation/native"
 
 const RegisterFirst = () => {
+
+
+
     return (
-        <Text> this RegisterFirst</Text>
+        <SafeAreaView>
+        </SafeAreaView>
     )
 }
 
