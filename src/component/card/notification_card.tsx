@@ -7,11 +7,17 @@ import {
 } from "react-native"
 import { CardProps } from "../../util/interface"
 import STYLE_GLOBAL from "../../util/style_global"
+import { useNavigation } from "@react-navigation/native"
+import NamePage from "../../util/namePage"
 
 const NotificationCard = ({ tittle, time, response }: CardProps) => {
+
+    const navigate = useNavigation()
+    //@ts-ignore
+    const gotoInformation = () => navigate.navigate(NamePage.NotificationDetail)
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={response}>
+            <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={gotoInformation}>
                 <Image source={require("../../assets/warning.png")} style={{ height: 50, width: 50 }} />
                 <View style={styles.textBox}>
                     <Text

@@ -9,6 +9,8 @@ import InformasiBudiDaya from './src/page/informasi_budidaya';
 import DinamicListInformation from './src/page/dinamic_list_information';
 import DetailProduk from './src/page/detail_produk';
 import DetailArtikel from './src/page/detail_artikel';
+import NotificationDetail from './src/page/notification_detail';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,7 @@ const App = () => {
         <Stack.Screen name={NamePage.DinamicListInformation} component={DinamicListInformation} />
         <Stack.Screen name={NamePage.DetailProduk} component={DetailProduk} />
         <Stack.Screen name={NamePage.DetailArtikel} component={DetailArtikel} />
+        <Stack.Screen name={NamePage.NotificationDetail} component={NotificationDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   )

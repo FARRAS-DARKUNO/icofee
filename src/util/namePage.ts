@@ -5,7 +5,8 @@ const NamePage = {
     InformasiBudiDaya : 'InformasiBudiDaya',
     DinamicListInformation : "DinamicListInformation",
     DetailProduk : "DetailProduk",
-    DetailArtikel : 'DetailArtikel'
+    DetailArtikel : 'DetailArtikel',
+    NotificationDetail : "NotificationDetail"
 }
 
 export default NamePage

@@ -21,10 +21,10 @@ const BackRemoveHeader = ({ name, action, remove }: HeaderData) => {
             <Text style={[STYLE_GLOBAL.SECONDARY_COLOR, STYLE_GLOBAL.HEADER2]}>
                 {name}
             </Text>
-            <TouchableOpacity onPress={action}>
+            <TouchableOpacity onPress={remove}>
                 <Icons
                     name="trash-can"
-                    size={32}
+                    size={26}
                     color={`${STYLE_GLOBAL.RED_COLOR.color}`}
                 />
             </TouchableOpacity>
