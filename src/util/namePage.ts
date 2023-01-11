@@ -6,7 +6,11 @@ const NamePage = {
     DinamicListInformation : "DinamicListInformation",
     DetailProduk : "DetailProduk",
     DetailArtikel : 'DetailArtikel',
-    NotificationDetail : "NotificationDetail"
+    NotificationDetail : "NotificationDetail",
+    LandingPage : 'LandingPage',
+    Login : 'Login',
+    RegisterFirst : 'RegisterFirst',
+    RegisterLast : 'RegisterLast'
 }
 
 export default NamePage
