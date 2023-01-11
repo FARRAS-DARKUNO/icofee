@@ -12,8 +12,9 @@ const NamePage = {
     RegisterFirst : 'RegisterFirst',
     RegisterLast : 'RegisterLast',
     ForgetPasswordFirst : 'ForgetPasswordFirst',
-    ForgetPasswordLast : 'ForgetPasswordLast'
-
+    ForgetPasswordLast : 'ForgetPasswordLast',
+    EditProfil : 'EditProfil',
+    EditDataUsaha : 'EditDataUsaha'
 }
 
 export default NamePage

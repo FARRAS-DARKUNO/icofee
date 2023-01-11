@@ -14,7 +14,6 @@ import Button from "../component/button"
 import NamePage from "../util/namePage"
 
 const RegisterLast = () => {
-    const valuePick = ["Olahan", "Mentah"]
 
     const navigate = useNavigation()
 

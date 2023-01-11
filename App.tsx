@@ -10,6 +10,8 @@ import DinamicListInformation from './src/page/dinamic_list_information';
 import DetailProduk from './src/page/detail_produk';
 import DetailArtikel from './src/page/detail_artikel';
 import NotificationDetail from './src/page/notification_detail';
+import EditProfil from './src/page/edit_profil';
+import EditDataUsaha from './src/page/edit_data_usaha';
 //
 import LandingPage from './src/page/landing_page';
 import Login from './src/page/login';
@@ -30,21 +32,23 @@ const App = () => {
         screenOptions={{ headerShown: false }}
       >
         {/* ini untuk login dan register doang */}
-        <Stack.Screen name={NamePage.LandingPage} component={LandingPage} />
+        {/* <Stack.Screen name={NamePage.LandingPage} component={LandingPage} />
         <Stack.Screen name={NamePage.Login} component={Login} />
         <Stack.Screen name={NamePage.RegisterFirst} component={RegisterFirst} />
         <Stack.Screen name={NamePage.RegisterLast} component={RegisterLast} />
         <Stack.Screen name={NamePage.ForgetPasswordFirst} component={ForgetPasswordFirst} />
-        <Stack.Screen name={NamePage.ForgetPasswordLast} component={ForgetPasswordLast} />
+        <Stack.Screen name={NamePage.ForgetPasswordLast} component={ForgetPasswordLast} /> */}
         {/* ini untuk page main */}
-        {/* <Stack.Screen name={NamePage.NavigationBar} component={NavigationBar} /> */}
-        {/* <Stack.Screen name={NamePage.InformasiHargaKopi} component={InformasiHargaKopi} /> */}
-        {/* <Stack.Screen name={NamePage.ListInformasiHargaKopi} component={ListInformasiHargaKopi} /> */}
-        {/* <Stack.Screen name={NamePage.InformasiBudiDaya} component={InformasiBudiDaya} /> */}
-        {/* <Stack.Screen name={NamePage.DinamicListInformation} component={DinamicListInformation} /> */}
-        {/* <Stack.Screen name={NamePage.DetailProduk} component={DetailProduk} /> */}
-        {/* <Stack.Screen name={NamePage.DetailArtikel} component={DetailArtikel} /> */}
-        {/* <Stack.Screen name={NamePage.NotificationDetail} component={NotificationDetail} /> */}
+        <Stack.Screen name={NamePage.NavigationBar} component={NavigationBar} />
+        <Stack.Screen name={NamePage.InformasiHargaKopi} component={InformasiHargaKopi} />
+        <Stack.Screen name={NamePage.ListInformasiHargaKopi} component={ListInformasiHargaKopi} />
+        <Stack.Screen name={NamePage.InformasiBudiDaya} component={InformasiBudiDaya} />
+        <Stack.Screen name={NamePage.DinamicListInformation} component={DinamicListInformation} />
+        <Stack.Screen name={NamePage.DetailProduk} component={DetailProduk} />
+        <Stack.Screen name={NamePage.DetailArtikel} component={DetailArtikel} />
+        <Stack.Screen name={NamePage.NotificationDetail} component={NotificationDetail} />
+        <Stack.Screen name={NamePage.EditProfil} component={EditProfil} />
+        <Stack.Screen name={NamePage.EditDataUsaha} component={EditDataUsaha} />
       </Stack.Navigator>
     </NavigationContainer>
   )
