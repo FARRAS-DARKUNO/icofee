@@ -15,6 +15,8 @@ import LandingPage from './src/page/landing_page';
 import Login from './src/page/login';
 import RegisterFirst from './src/page/register_first';
 import RegisterLast from './src/page/register_last';
+import ForgetPasswordFirst from './src/page/forget_password_first';
+import ForgetPasswordLast from './src/page/forget_password_next';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +34,8 @@ const App = () => {
         <Stack.Screen name={NamePage.Login} component={Login} />
         <Stack.Screen name={NamePage.RegisterFirst} component={RegisterFirst} />
         <Stack.Screen name={NamePage.RegisterLast} component={RegisterLast} />
+        <Stack.Screen name={NamePage.ForgetPasswordFirst} component={ForgetPasswordFirst} />
+        <Stack.Screen name={NamePage.ForgetPasswordLast} component={ForgetPasswordLast} />
         {/* ini untuk page main */}
         {/* <Stack.Screen name={NamePage.NavigationBar} component={NavigationBar} /> */}
         {/* <Stack.Screen name={NamePage.InformasiHargaKopi} component={InformasiHargaKopi} /> */}

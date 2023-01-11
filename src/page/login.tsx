@@ -11,11 +11,14 @@ import { useNavigation } from "@react-navigation/native"
 import STYLE_GLOBAL from "../util/style_global"
 import BoxInput from "../component/box_input"
 import Button from "../component/button"
+import NamePage from "../util/namePage"
 
 const Login = () => {
     const navigate = useNavigation()
 
     const gotoBack = () => navigate.goBack()
+    //@ts-ignore
+    const goNextPage = () => navigate.navigate(NamePage.ForgetPasswordFirst)
 
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -35,7 +38,7 @@ const Login = () => {
                         Lupa kata sandi ?
                         <Text
                             style={[STYLE_GLOBAL.TERSIER_COLOR, STYLE_GLOBAL.PAGE]}
-                            onPress={() => console.log('hallo')}
+                            onPress={goNextPage}
                         >
                             {" Klik Sini"}
                         </Text>

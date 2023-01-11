@@ -10,7 +10,10 @@ const NamePage = {
     LandingPage : 'LandingPage',
     Login : 'Login',
     RegisterFirst : 'RegisterFirst',
-    RegisterLast : 'RegisterLast'
+    RegisterLast : 'RegisterLast',
+    ForgetPasswordFirst : 'ForgetPasswordFirst',
+    ForgetPasswordLast : 'ForgetPasswordLast'
+
 }
 
 export default NamePage
