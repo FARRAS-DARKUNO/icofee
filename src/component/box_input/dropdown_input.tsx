@@ -10,7 +10,7 @@ import { BoxInputData } from '../../util/interface';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const DropdownInputs = ({ input, placeholders, tittle, values, dropList }: BoxInputData) => {
+const DropdownInputs = ({ picker, placeholders, tittle, values, dropList }: BoxInputData) => {
 
 
 
@@ -31,10 +31,12 @@ const DropdownInputs = ({ input, placeholders, tittle, values, dropList }: BoxIn
                     dropdownIconPosition="right"
                     data={dropList}
                     onSelect={(selectedItem, index) => {
+                        let temp = index + 2
                         //@ts-ignore
-                        input(selectedItem)
+                        picker(temp)
                     }}
                     buttonTextAfterSelection={(selectedItem, index) => {
+
                         // text represented after item is selected
                         // if data array is an array of objects then return selectedItem.property to render after item is selected
                         return selectedItem

@@ -38,3 +38,14 @@ export interface HeaderData {
     remove? () : any,
     status? : number
 }
+
+export interface AlertProps {
+    action? (): any,
+    title: string,
+    massage: string,
+}
+
+export interface AxiosProps {
+    action? (): any,
+    data? : any
+}

@@ -32,12 +32,12 @@ const App = () => {
         screenOptions={{ headerShown: false }}
       >
         {/* ini untuk login dan register doang */}
-        {/* <Stack.Screen name={NamePage.LandingPage} component={LandingPage} />
+        <Stack.Screen name={NamePage.LandingPage} component={LandingPage} />
         <Stack.Screen name={NamePage.Login} component={Login} />
         <Stack.Screen name={NamePage.RegisterFirst} component={RegisterFirst} />
         <Stack.Screen name={NamePage.RegisterLast} component={RegisterLast} />
         <Stack.Screen name={NamePage.ForgetPasswordFirst} component={ForgetPasswordFirst} />
-        <Stack.Screen name={NamePage.ForgetPasswordLast} component={ForgetPasswordLast} /> */}
+        <Stack.Screen name={NamePage.ForgetPasswordLast} component={ForgetPasswordLast} />
         {/* ini untuk page main */}
         <Stack.Screen name={NamePage.NavigationBar} component={NavigationBar} />
         <Stack.Screen name={NamePage.InformasiHargaKopi} component={InformasiHargaKopi} />

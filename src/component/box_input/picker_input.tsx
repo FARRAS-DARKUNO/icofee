@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import {
-    TextInput,
     View,
     StyleSheet,
     Text,
-    TouchableOpacity
 } from 'react-native'
 import STYLE_GLOBAL from '../../util/style_global';
 import { BoxInputData } from '../../util/interface';
@@ -29,11 +27,15 @@ const ImagePickerInputs = ({ picker, placeholders, tittle, values }: BoxInputDat
         } else if (imagesKTP.errorCode) {
             console.log(imagesKTP.errorMessage)
         } else {
-            const source = { uri: imagesKTP.assets[0].uri }
+            const source = {
+                uri: imagesKTP.assets[0].uri,
+                type: imagesKTP.assets[0].type,
+                name: imagesKTP.assets[0].fileName,
+            }
             //@ts-ignore
             picker(source)
             console.log(source)
-            console.log(imagesKTP.assets[0].fileName)
+            // console.log(source.uri)
         }
 
     }

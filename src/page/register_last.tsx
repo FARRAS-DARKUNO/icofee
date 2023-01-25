@@ -7,36 +7,61 @@ import {
     View
 } from "react-native"
 import Header from "../component/header"
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useRoute } from "@react-navigation/native"
 import STYLE_GLOBAL from "../util/style_global"
 import BoxInput from "../component/box_input"
 import Button from "../component/button"
 import NamePage from "../util/namePage"
+import ApiAxios from "../util/axios"
 
 const RegisterLast = () => {
 
     const navigate = useNavigation()
 
+    //@ts-ignore
+    const { name, number, role, password } = useRoute().params
+
     const gotoBack = () => navigate.goBack()
     //@ts-ignore
     const gotoNext = () => navigate.navigate(NamePage.Login)
 
+    const [username, setUsername] = useState<string>('')
     const [nik, setNik] = useState<string>('')
+    const [date, setDate] = useState<any>('')
     const [address, setAddress] = useState<string>('')
     const [ktp, setKtp] = useState<any>(null)
     const [profile, setProfile] = useState<any>(null)
+
+    const postRegister = () => {
+        const finalData = new FormData()
+        finalData.append('username', username)
+        finalData.append('password', password)
+        finalData.append('name', name)
+        finalData.append('profile_pic', profile)
+        finalData.append('role', role)
+        finalData.append('birth', date)
+        finalData.append('telephone_number', number)
+        finalData.append('address', address)
+        finalData.append('nik', nik)
+        finalData.append('ktp_pic', ktp)
+        finalData.append('verification_status', "0")
+
+        ApiAxios.postRegistration({ data: finalData, action: gotoNext })
+    }
 
     return (
         <SafeAreaView style={styles.container}>
             <Header.BackHeader name="Registrasi" action={gotoBack} />
             <View style={STYLE_GLOBAL.ENTER40} />
             <ScrollView >
+                <BoxInput.TextInputs tittle="Username" input={setUsername} values={username} />
                 <BoxInput.TextInputs tittle="Nik KTP" input={setNik} values={nik} />
                 <BoxInput.TextInputs tittle="Alamat" input={setAddress} values={address} />
+                <BoxInput.DateInput tittle="Tangal Lahir" input={setDate} values={date} />
                 <BoxInput.ImagePickerInputs tittle="Foto KTP" picker={setKtp} values={ktp} />
                 <BoxInput.ImagePickerInputs tittle="Foto Profil" picker={setProfile} values={profile} />
                 <View style={STYLE_GLOBAL.ENTER40} />
-                <Button.NormalButton response={gotoNext} tiitle="Daftar" />
+                <Button.NormalButton response={postRegister} tiitle="Daftar" />
                 <View style={STYLE_GLOBAL.ENTER20} />
 
             </ScrollView>
