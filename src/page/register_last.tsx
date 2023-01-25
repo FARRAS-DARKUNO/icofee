@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {
     Text,
     StyleSheet,
@@ -13,6 +13,8 @@ import BoxInput from "../component/box_input"
 import Button from "../component/button"
 import NamePage from "../util/namePage"
 import ApiAxios from "../util/axios"
+import Loading from "../component/loading"
+import Alert from "../component/alert"
 
 const RegisterLast = () => {
 
@@ -25,6 +27,8 @@ const RegisterLast = () => {
     //@ts-ignore
     const gotoNext = () => navigate.navigate(NamePage.Login)
 
+    const [isLoading, setLoading] = useState<boolean>(false)
+
     const [username, setUsername] = useState<string>('')
     const [nik, setNik] = useState<string>('')
     const [date, setDate] = useState<any>('')
@@ -32,7 +36,22 @@ const RegisterLast = () => {
     const [ktp, setKtp] = useState<any>(null)
     const [profile, setProfile] = useState<any>(null)
 
+    const checkBefocheckBeforeNextreNext = () => {
+        if (username == '' || nik == '' || date == '' || address == '' || ktp == null || profile == null) {
+            Alert.MistakeAlert({
+                title: "Terjadi Kesalahan",
+                massage: "Lengkapi data diri anda"
+            })
+        }
+        else {
+            postRegister()
+        }
+    }
+
     const postRegister = () => {
+
+        setLoading(true)
+
         const finalData = new FormData()
         finalData.append('username', username)
         finalData.append('password', password)
@@ -46,26 +65,33 @@ const RegisterLast = () => {
         finalData.append('ktp_pic', ktp)
         finalData.append('verification_status', "0")
 
-        ApiAxios.postRegistration({ data: finalData, action: gotoNext })
+        ApiAxios.postRegistration({ data: finalData, action: gotoNext, setLoading: setLoading })
     }
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <Header.BackHeader name="Registrasi" action={gotoBack} />
-            <View style={STYLE_GLOBAL.ENTER40} />
-            <ScrollView >
-                <BoxInput.TextInputs tittle="Username" input={setUsername} values={username} />
-                <BoxInput.TextInputs tittle="Nik KTP" input={setNik} values={nik} />
-                <BoxInput.TextInputs tittle="Alamat" input={setAddress} values={address} />
-                <BoxInput.DateInput tittle="Tangal Lahir" input={setDate} values={date} />
-                <BoxInput.ImagePickerInputs tittle="Foto KTP" picker={setKtp} values={ktp} />
-                <BoxInput.ImagePickerInputs tittle="Foto Profil" picker={setProfile} values={profile} />
-                <View style={STYLE_GLOBAL.ENTER40} />
-                <Button.NormalButton response={postRegister} tiitle="Daftar" />
-                <View style={STYLE_GLOBAL.ENTER20} />
 
-            </ScrollView>
-        </SafeAreaView>
+
+    return (
+        <>
+            {
+                isLoading ? <Loading /> :
+                    <SafeAreaView style={styles.container}>
+                        <Header.BackHeader name="Registrasi" action={gotoBack} />
+                        <View style={STYLE_GLOBAL.ENTER40} />
+                        <ScrollView >
+                            <BoxInput.TextInputs tittle="Username" input={setUsername} values={username} />
+                            <BoxInput.TextInputs tittle="Nik KTP" input={setNik} values={nik} />
+                            <BoxInput.TextInputs tittle="Alamat" input={setAddress} values={address} />
+                            <BoxInput.DateInput tittle="Tangal Lahir" input={setDate} values={date} />
+                            <BoxInput.ImagePickerInputs tittle="Foto KTP" picker={setKtp} values={ktp} />
+                            <BoxInput.ImagePickerInputs tittle="Foto Profil" picker={setProfile} values={profile} />
+                            <View style={STYLE_GLOBAL.ENTER40} />
+                            <Button.NormalButton response={checkBefocheckBeforeNextreNext} tiitle="Daftar" />
+                            <View style={STYLE_GLOBAL.ENTER20} />
+
+                        </ScrollView>
+                    </SafeAreaView>
+            }
+        </>
     )
 }
 

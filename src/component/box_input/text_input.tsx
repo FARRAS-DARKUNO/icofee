@@ -8,7 +8,9 @@ import {
 import STYLE_GLOBAL from '../../util/style_global';
 import { BoxInputData } from '../../util/interface';
 
-const TextInputs = ({ input, placeholders, tittle, values }: BoxInputData) => {
+const TextInputs = ({ input, placeholders, tittle, values, isPassword }: BoxInputData) => {
+
+    let temp = isPassword || false
 
     return (
         <View style={styles.container}>
@@ -23,6 +25,7 @@ const TextInputs = ({ input, placeholders, tittle, values }: BoxInputData) => {
                     onChangeText={input}
                     value={values}
                     placeholder={placeholders}
+                    secureTextEntry={temp}
                 />
             </View>
             <View style={[styles.line, STYLE_GLOBAL.BACKGROUND_TERSIER]} />

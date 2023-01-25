@@ -12,6 +12,7 @@ import STYLE_GLOBAL from "../util/style_global"
 import BoxInput from "../component/box_input"
 import Button from "../component/button"
 import NamePage from "../util/namePage"
+import Alert from "../component/alert"
 
 const RegisterFirst = () => {
 
@@ -28,6 +29,24 @@ const RegisterFirst = () => {
         password: password,
     })
 
+    const checkBefocheckBeforeNextreNext = () => {
+        if (name == '' || number == '' || pick == '' || password == '' || rePassword == '') {
+            Alert.MistakeAlert({
+                title: "Terjadi Kesalahan",
+                massage: "Lengkapi data diri anda"
+            })
+        }
+        else if (password != rePassword) {
+            Alert.MistakeAlert({
+                title: "Terjadi Kesalahan",
+                massage: "Masukan kata sandi anda dengan benar"
+            })
+        }
+        else {
+            gotoNext()
+        }
+    }
+
     const [name, setName] = useState<string>('')
     const [number, setNumber] = useState<string>('')
     const [pick, setPick] = useState<string>('')
@@ -42,10 +61,10 @@ const RegisterFirst = () => {
                 <BoxInput.TextInputs tittle="Nama" input={setName} values={name} />
                 <BoxInput.TextInputs tittle="Nomor Telepon" input={setNumber} values={number} />
                 <BoxInput.DropdownInputs tittle="Daftar Sebagai..." dropList={valuePick} picker={setPick} values={pick} />
-                <BoxInput.TextInputs tittle="Kata Sandi" input={setPassword} values={password} />
-                <BoxInput.TextInputs tittle="Kata Sandi" input={setRePassword} values={rePassword} />
+                <BoxInput.TextInputs tittle="Kata Sandi" input={setPassword} values={password} isPassword={true} />
+                <BoxInput.TextInputs tittle="Kata Sandi" input={setRePassword} values={rePassword} isPassword={true} />
                 <View style={STYLE_GLOBAL.ENTER40} />
-                <Button.NormalButton response={gotoNext} tiitle="Selanjutnya" />
+                <Button.NormalButton response={checkBefocheckBeforeNextreNext} tiitle="Selanjutnya" />
                 <View style={STYLE_GLOBAL.ENTER20} />
 
             </ScrollView>

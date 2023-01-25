@@ -28,6 +28,7 @@ export interface BoxInputData {
     placeholders? : string,
     values? : any,
     dropList? : any
+    isPassword? : boolean,
 }
 
 export interface HeaderData {
@@ -47,5 +48,6 @@ export interface AlertProps {
 
 export interface AxiosProps {
     action? (): any,
-    data? : any
+    data? : any,
+    setLoading? : ReactSetter<boolean>
 }

@@ -6,8 +6,7 @@ const mainLink = "http://47.250.128.109:8000"
 
 let registrationLink = "/api/v1/cofeetera-users/user-registration/"
 
-const postRegistration = ({ action, data }: AxiosProps) => {
-    // console.log(data)
+const postRegistration = ({ action, data, setLoading }: AxiosProps) => {
     axios.post(mainLink + registrationLink, data,
         {
             headers: {
@@ -18,6 +17,8 @@ const postRegistration = ({ action, data }: AxiosProps) => {
         })
         .then(placement => {
             console.log("Mantasps", placement.data)
+            //@ts-ignore
+            setLoading(false)
             Alert.ActionAlert(
                 {
                     title: "Registrasi Berhasil",
@@ -27,6 +28,8 @@ const postRegistration = ({ action, data }: AxiosProps) => {
             )
         })
         .catch(err => {
+            //@ts-ignore
+            setLoading(false)
             Alert.MistakeAlert(
                 {
                     title: "Terjadi Kesalahan",
