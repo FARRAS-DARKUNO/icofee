@@ -13,8 +13,10 @@ import BoxInput from "../component/box_input"
 import Button from "../component/button"
 import NamePage from "../util/namePage"
 import Loading from "../component/loading"
-import ApiAxios from "../util/axios"
+import ApiAxios, { loginLink, mainLink } from "../util/axios"
 import Alert from "../component/alert"
+import axios from "axios"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const Login = () => {
     const navigate = useNavigation()
@@ -31,13 +33,39 @@ const Login = () => {
 
     const [isLoading, setLoading] = useState<boolean>(false)
 
-    const postData = () => {
-        setLoading(true)
-        let data = {
+    const postData = async () => {
+
+        axios.post(mainLink + loginLink, {
             username: username,
             password: password,
-        }
-        ApiAxios.postLogin({ data: data, setLoading: setLoading, action: goNavigationBar })
+        })
+            .then(placement => {
+                AsyncStorage.setItem("Token", placement.data.token)
+                    .then(() => {
+                        AsyncStorage.setItem("Id", placement.data.user.id.toString())
+                            .then(() => {
+                                setLoading(false)
+                                Alert.ActionAlert(
+                                    {
+                                        title: "Login Berhasil",
+                                        massage: "Anda berhasil melakukan Login",
+                                        action: goNavigationBar,
+                                    }
+                                )
+                            })
+                    })
+                //@ts-ignore
+
+            })
+            .catch(err => {
+                setLoading(false)
+                Alert.MistakeAlert(
+                    {
+                        title: "Terjadi Kesalahan",
+                        massage: "Username atau Password salah"
+                    }
+                )
+            })
     }
 
     const checkData = () => {
@@ -50,6 +78,7 @@ const Login = () => {
             )
         }
         else {
+            setLoading(true)
             postData()
         }
     }

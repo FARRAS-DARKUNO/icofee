@@ -13,6 +13,7 @@ import NotificationDetail from './src/page/notification_detail';
 import EditProfil from './src/page/edit_profil';
 import EditDataUsaha from './src/page/edit_data_usaha';
 //
+import SplashScreen from './src/page/splash_screen';
 import LandingPage from './src/page/landing_page';
 import Login from './src/page/login';
 import RegisterFirst from './src/page/register_first';
@@ -31,6 +32,7 @@ const App = () => {
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
       >
+        <Stack.Screen name={NamePage.SplashScreen} component={SplashScreen} />
         {/* ini untuk login dan register doang */}
         <Stack.Screen name={NamePage.LandingPage} component={LandingPage} />
         <Stack.Screen name={NamePage.Login} component={Login} />

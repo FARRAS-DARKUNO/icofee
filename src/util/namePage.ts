@@ -1,4 +1,5 @@
 const NamePage = {
+    SplashScreen : "SplashScreen",
     NavigationBar : "NavigationBar",
     InformasiHargaKopi : "InformasiHargaKopi",
     ListInformasiHargaKopi : 'ListInformasiHargaKopi',

@@ -2,12 +2,12 @@ import axios from "axios"
 import Alert from "../component/alert"
 import { AxiosProps } from "./interface"
 
-const mainLink = "http://47.250.128.109:8000"
+export const mainLink = "http://47.250.128.109:8000"
 
-const registrationLink = "/api/v1/cofeetera-users/user-registration/"
-const loginLink = "/api/v1/cofeetera-users/user-login/"
-const forgetPassword = "/api/v1/cofeetera-users/reset-password/"
-const changePassword = (id : string) => {
+export const registrationLink = "/api/v1/cofeetera-users/user-registration/"
+export const loginLink = "/api/v1/cofeetera-users/user-login/"
+export const forgetPassword = "/api/v1/cofeetera-users/reset-password/"
+export const changePassword = (id : string) => {
     return `/api/v1/cofeetera-users/update-password/${id}/`
 }
 
