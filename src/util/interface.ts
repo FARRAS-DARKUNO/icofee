@@ -49,5 +49,7 @@ export interface AlertProps {
 export interface AxiosProps {
     action? (): any,
     data? : any,
-    setLoading? : ReactSetter<boolean>
+    setLoading? : ReactSetter<boolean>,
+    setId? : ReactSetter<any>,
+    value? : any
 }
