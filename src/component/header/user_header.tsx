@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
     View,
     StyleSheet,
@@ -5,27 +6,56 @@ import {
     Image
 } from "react-native"
 import STYLE_GLOBAL from "../../util/style_global";
-import { HeaderData } from "../../util/interface";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import ApiAxios from "../../util/axios";
+import Loading from "../loading";
 
-const UserHeaders = ({ image, name }: HeaderData) => {
+
+const UserHeaders = () => {
+
+    const [isLoading, setLoading] = useState<boolean>(true)
+    const [image, setImage] = useState<string>('')
+    const [name, setName] = useState<string>('')
+
+
+    useEffect(() => {
+        AsyncStorage.getItem("Token")
+            .then(token => {
+                AsyncStorage.getItem("Id")
+                    .then(id => {
+                        //@ts-ignore
+                        ApiAxios.getProfil({ token: token, id: id, setLoading: setLoading, setImage: setImage, setName: setName })
+
+                    })
+            })
+
+    }, [isLoading, image, name])
 
 
 
     return (
-        <View style={styles.container}>
-            <View style={styles.boxImage}>
-                <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 1000 }} />
-            </View>
-            <View style={styles.boxTiitle}>
-                <Text style={[STYLE_GLOBAL.USER_TITTLE, STYLE_GLOBAL.PRIMARI_COLOR]}>
-                    {'Hai, ' + name}
-                </Text>
-                <Text style={[STYLE_GLOBAL.PAGE, STYLE_GLOBAL.BLACK_COLOR]}>
-                    {'Selamat datang di CoffeeTera !'}
-                </Text>
-            </View>
-            <View />
-        </View>
+        <>
+            {
+                isLoading ?
+                    <View style={styles.container}>
+                        <Loading />
+                    </View> :
+                    <View style={styles.container}>
+                        <View style={styles.boxImage}>
+                            <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 1000 }} />
+                        </View>
+                        <View style={styles.boxTiitle}>
+                            <Text style={[STYLE_GLOBAL.USER_TITTLE, STYLE_GLOBAL.PRIMARI_COLOR]}>
+                                {'Hai, ' + name}
+                            </Text>
+                            <Text style={[STYLE_GLOBAL.PAGE, STYLE_GLOBAL.BLACK_COLOR]}>
+                                {'Selamat datang di CoffeeTera !'}
+                            </Text>
+                        </View>
+                        <View />
+                    </View>
+            }
+        </>
     )
 }
 

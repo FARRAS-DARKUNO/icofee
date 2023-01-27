@@ -11,11 +11,11 @@ import { HeaderData } from "../../util/interface";
 const HeaderTittle = ({ name }: HeaderData) => {
     return (
         <View style={styles.container}>
-            <Image source={require("../../assets/leftDaun.png")} style={{ height: 50, width: 50 }} />
+            <View />
             <Text style={[STYLE_GLOBAL.SECONDARY_COLOR, STYLE_GLOBAL.HEADER2]}>
                 {name}
             </Text>
-            <Image source={require("../../assets/rightDaun.png")} style={{ height: 50, width: 50 }} />
+            <View />
         </View>
     )
 }

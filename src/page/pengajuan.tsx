@@ -16,8 +16,6 @@ const Pengajuan = () => {
 
     const [choice, setChoice] = useState<string>('add')
 
-    let img = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-
     return (
         <SafeAreaView style={[styles.container]}>
             <StatusBar
@@ -25,7 +23,7 @@ const Pengajuan = () => {
                 backgroundColor={STYLE_GLOBAL.BACKGROUND_WHITE.backgroundColor}
             />
             <ScrollView>
-                <Header.UserHeaders image={img} name="Abdul Aziz" />
+                <Header.UserHeaders />
                 <View style={STYLE_GLOBAL.ENTER30} />
                 {
                     choice == "add" ?

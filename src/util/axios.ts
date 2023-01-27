@@ -10,6 +10,9 @@ export const forgetPassword = "/api/v1/cofeetera-users/reset-password/"
 export const changePassword = (id : string) => {
     return `/api/v1/cofeetera-users/update-password/${id}/`
 }
+export const profil = (id : string) => {
+    return `/api/v1/cofeetera-users/user-data/${id}/`
+}
 
 const postRegistration = ({ action, data, setLoading }: AxiosProps) => {
     axios.post(mainLink + registrationLink, data,
@@ -124,10 +127,27 @@ const putChangePassword = ({ action, data, setLoading, value}: AxiosProps) => {
     })
 }
 
+const getProfil =({ token, id , setImage,setName, setLoading}: AxiosProps)=>{
+    //@ts-ignore
+    axios.get(mainLink + profil(id),
+    { 
+        headers: { "Authorization": `Token ${token}` } 
+    })
+    .then(plecement =>{
+        //@ts-ignore
+        setName(plecement.data.name)
+        //@ts-ignore
+        setImage(plecement.data.profile_pic)
+        //@ts-ignore
+        setLoading(false)
+    })
+}
+
 const ApiAxios = {
     postRegistration,
     postLogin,
     postForgetPassowrd,
     putChangePassword,
+    getProfil,
 }
 export default ApiAxios
