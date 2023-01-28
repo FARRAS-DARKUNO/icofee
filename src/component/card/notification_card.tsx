@@ -10,15 +10,22 @@ import STYLE_GLOBAL from "../../util/style_global"
 import { useNavigation } from "@react-navigation/native"
 import NamePage from "../../util/namePage"
 
-const NotificationCard = ({ tittle, time, response }: CardProps) => {
+const NotificationCard = ({ tittle, time, id, type }: CardProps) => {
 
     const navigate = useNavigation()
     //@ts-ignore
-    const gotoInformation = () => navigate.navigate(NamePage.NotificationDetail)
+    const gotoInformation = () => navigate.navigate(NamePage.NotificationDetail, {
+        id: id,
+        type: type
+    })
     return (
         <View style={styles.container}>
             <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={gotoInformation}>
-                <Image source={require("../../assets/warning.png")} style={{ height: 50, width: 50 }} />
+                {
+                    type == 'SystemNotifications' ?
+                        <Image source={require("../../assets/warning.png")} style={{ height: 50, width: 50 }} /> :
+                        <Image source={require("../../assets/notif.png")} style={{ height: 50, width: 50 }} />
+                }
                 <View style={styles.textBox}>
                     <Text
                         style={[STYLE_GLOBAL.BLACK_COLOR, STYLE_GLOBAL.PAGE, styles.bodyText]}

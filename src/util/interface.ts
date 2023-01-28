@@ -17,8 +17,10 @@ export interface CardProps {
     time? : string,
     icon? : string,
     isUpgrade? : number,
-    price? : string
-    persen? : string
+    price? : string,
+    persen? : string,
+    id ? : string,
+    type ? : string
 }
 
 export interface BoxInputData {
@@ -58,4 +60,6 @@ export interface AxiosProps {
     setName ? : ReactSetter<string>,
     setNicname ? : ReactSetter<string>,
     setStatus ? : ReactSetter<any>
+    setData? : ReactSetter<any>
+    setDate ? : ReactSetter<Date>
 }

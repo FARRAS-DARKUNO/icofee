@@ -13,6 +13,18 @@ export const changePassword = (id : string) => {
 export const profil = (id : string) => {
     return `/api/v1/cofeetera-users/user-data/${id}/`
 }
+export const allNotification = (user_id : string) => {
+    return `/api/v1/notif/all-notifications/?user_id=${user_id}`
+}
+export const detailNotificationUser = (id_notifikasi_user: string) => {
+    return `/api/v1/notif/user-notifications/${id_notifikasi_user}/`
+}
+export const patchlNotificationUser = (id_notifikasi_user: string) => {
+    return `/api/v1/notif/user-notifications/${id_notifikasi_user}/`
+}
+export const detailNotificationSistem = (id_notifikasi_sistem : string) => {
+    return `/api/v1/notif/system-notifications/${id_notifikasi_sistem}/`
+}
 
 const postRegistration = ({ action, data, setLoading }: AxiosProps) => {
     axios.post(mainLink + registrationLink, data,
@@ -143,11 +155,58 @@ const getProfil =({ token, id , setImage,setName, setLoading}: AxiosProps)=>{
     })
 }
 
+const getAllNotification = ({id, setData, setLoading, token}: AxiosProps) => {
+    axios.get(mainLink + allNotification(id!),{ 
+        headers: { "Authorization": `Token ${token}` } 
+    })
+    .then(placement => {
+        setData!(placement.data)
+        setLoading!(false)
+        console.log(placement.data)
+    })
+}
+
+const getUerNotification = ({id, setData, setLoading, token}: AxiosProps) => {
+    axios.get(mainLink + detailNotificationUser(id!),{ 
+        headers: { "Authorization": `Token ${token}` } 
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+    })
+    .finally(()=>{
+        axios.patch(mainLink + patchlNotificationUser(id!),
+        {
+            read : 1
+        },
+        {
+            headers: { "Authorization": `Token ${token}` }
+        })
+        .then(value => {
+            console.log("mantaps",value)
+            setLoading!(false)
+        })
+    })
+}
+const getSystemNotification = ({id, setData, setLoading, token}: AxiosProps) => {
+    axios.get(mainLink + detailNotificationSistem(id!),{ 
+        headers: { "Authorization": `Token ${token}` } 
+    })
+    .then(placement => {
+        setData!(placement.data)
+        setLoading!(false)
+        console.log(placement.data)
+    })
+}
+
 const ApiAxios = {
     postRegistration,
     postLogin,
     postForgetPassowrd,
     putChangePassword,
     getProfil,
+    getAllNotification,
+    getUerNotification,
+    getSystemNotification
 }
 export default ApiAxios
