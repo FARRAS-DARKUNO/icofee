@@ -7,6 +7,7 @@ export const mainLink = "http://47.250.128.109:8000"
 export const registrationLink = "/api/v1/cofeetera-users/user-registration/"
 export const loginLink = "/api/v1/cofeetera-users/user-login/"
 export const forgetPassword = "/api/v1/cofeetera-users/reset-password/"
+export const productType = '/api/v1/products/product-types/'
 export const changePassword = (id : string) => {
     return `/api/v1/cofeetera-users/update-password/${id}/`
 }
@@ -24,6 +25,15 @@ export const patchlNotificationUser = (id_notifikasi_user: string) => {
 }
 export const detailNotificationSistem = (id_notifikasi_sistem : string) => {
     return `/api/v1/notif/system-notifications/${id_notifikasi_sistem}/`
+}
+export const productList = (product_type : string) => {
+    return `/api/v1/products/product-list/?type_id=${product_type}&verification_status=1`
+}
+export const detailProduct = (id : string) => {
+    return `/api/v1/products/product-list/${id}`
+}
+export const detailStore = (id : string) => {
+    return `/api/v1/products/store-datas/${id}/`
 }
 
 const postRegistration = ({ action, data, setLoading }: AxiosProps) => {
@@ -198,7 +208,60 @@ const getSystemNotification = ({id, setData, setLoading, token}: AxiosProps) => 
         console.log(placement.data)
     })
 }
+const getTypepriceInformation = ({setLoading, token, setData}: AxiosProps) => {
+    axios.get(mainLink + productType,{
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+        setLoading!(false)
+    })
+}
 
+const getListProductPrice = ({setLoading, token, setData, id}: AxiosProps) => {
+    axios.get(mainLink + productList(id!),{
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+        setLoading!(false)
+    })
+}
+
+const getDetailProduct = ({setLoading, token, setData, id, setStatus}: AxiosProps) => {
+    axios.get(mainLink + detailProduct(id!),{
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        // console.log(placement.data)
+        axios.get(mainLink + detailStore(placement.data.id), {
+            headers: { "Authorization": `Token ${token}` }
+        })
+        .then(value => {
+            const temp = [
+                {
+                    tittle: "Nama Usaha",
+                    data: value.data.name
+                },
+                {
+                    tittle: "Alamat",
+                    data: value.data.address
+                },
+                {
+                    tittle: "Nomor Telepon",
+                    data: value.data.telephone
+                },
+            ]
+            setStatus!(temp)
+            console.log(value.data)
+            setLoading!(false)
+        })
+    })
+    
+}
 const ApiAxios = {
     postRegistration,
     postLogin,
@@ -207,6 +270,9 @@ const ApiAxios = {
     getProfil,
     getAllNotification,
     getUerNotification,
-    getSystemNotification
+    getSystemNotification,
+    getTypepriceInformation,
+    getListProductPrice,
+    getDetailProduct
 }
 export default ApiAxios

@@ -11,17 +11,17 @@ import STYLE_GLOBAL from "../../util/style_global"
 import { useNavigation } from "@react-navigation/native"
 import NamePage from "../../util/namePage"
 
-const PriceCard = ({ image, body, response, isUpgrade, price, tittle, persen }: CardProps) => {
+const PriceCard = ({ image, body, isUpgrade, price, tittle, persen, id }: CardProps) => {
 
     const navigate = useNavigation()
     // @ts-ignore
-    const gotoDetail = () => navigate.navigate(NamePage.DetailProduk)
+    const gotoDetail = () => navigate.navigate(NamePage.DetailProduk, { id: id })
 
     return (
         <View style={styles.container}>
             <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={gotoDetail}>
                 <View style={styles.imageBox}>
-                    <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 9 }} />
+                    <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 9, resizeMode: 'center' }} />
                 </View>
                 <View style={styles.textBox}>
                     <View style={styles.headerText}>
@@ -45,7 +45,7 @@ const PriceCard = ({ image, body, response, isUpgrade, price, tittle, persen }: 
                             {`RP ${price}`}
                         </Text>
                         <Text style={[STYLE_GLOBAL.HEADER3, isUpgrade == 1 ? STYLE_GLOBAL.GREEN_TER_COLOR : STYLE_GLOBAL.RED_COLOR]}>
-                            {`${isUpgrade == 1 ? "+" : "-"} ${persen}%`}
+                            {`${isUpgrade == 1 ? "+" : ""} ${persen}%`}
                         </Text>
                     </View>
                 </View>
