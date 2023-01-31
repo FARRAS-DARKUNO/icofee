@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: STYLE_GLOBAL.BACKGROUND_WHITE.backgroundColor,
         flex: 1,
+        marginBottom: 50
     },
 })
 

@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 
+export const COLOR_PALLETE = {
+    GREEN_SEK_COLOR: '#649D33'
+}
+
 const STYLE_GLOBAL = StyleSheet.create({
     HEADER1: {
         fontSize: 24,
@@ -65,7 +69,7 @@ const STYLE_GLOBAL = StyleSheet.create({
         color: '#3F7623'
     },
     GREEN_SEK_COLOR: {
-        color: '#649D33'
+        color: COLOR_PALLETE.GREEN_SEK_COLOR
     },
     GREEN_TER_COLOR: {
         color: '#26C165'

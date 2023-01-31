@@ -10,17 +10,17 @@ import STYLE_GLOBAL from "../../util/style_global"
 import { useNavigation } from "@react-navigation/native"
 import NamePage from "../../util/namePage"
 
-const InformationCard = ({ response, tittle, body, image, time }: CardProps) => {
+const InformationCard = ({ tittle, body, image, time, id }: CardProps) => {
 
     const navigate = useNavigation()
     // @ts-ignore
-    const gotoDetail = () => navigate.navigate(NamePage.DetailArtikel)
+    const gotoDetail = () => navigate.navigate(NamePage.DetailArtikel, { id: id })
 
     return (
         <View style={styles.container}>
             <TouchableOpacity style={[styles.card, STYLE_GLOBAL.BACKGROUND_WHITE]} onPress={gotoDetail}>
                 <View style={styles.img}>
-                    <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 9 }} />
+                    <Image source={{ uri: image }} style={{ width: "100%", height: '100%', borderRadius: 9, resizeMode: 'stretch' }} />
                 </View>
                 <View style={styles.boxText}>
                     <Text style={[STYLE_GLOBAL.BLACK_COLOR, STYLE_GLOBAL.MINI_TITTLE, styles.enter5]}>

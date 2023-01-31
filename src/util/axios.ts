@@ -35,6 +35,19 @@ export const detailProduct = (id : string) => {
 export const detailStore = (id : string) => {
     return `/api/v1/products/store-datas/${id}/`
 }
+export const cetegoryArticle = '/api/v1/articles/article-categories/'
+
+export const listArticle = '/api/v1/articles/list-articles/'
+
+export const listArticleByID = (id_article : string) => {
+    return `/api/v1/articles/list-articles/${id_article}`
+}
+export const liatArticleByIdArticle = (id_articles_category : string) => {
+    return `/api/v1/articles/list-articles/?category_id=${id_articles_category}`
+}
+export const liatArticleBySearch = (id_articles_category : string, search: string ) => {
+    return `/api/v1/articles/list-articles/?category_id=${id_articles_category}&search=${search}`
+}
 
 const postRegistration = ({ action, data, setLoading }: AxiosProps) => {
     axios.post(mainLink + registrationLink, data,
@@ -262,6 +275,61 @@ const getDetailProduct = ({setLoading, token, setData, id, setStatus}: AxiosProp
     })
     
 }
+
+const getCategoryArticle = ({setLoading, token, setData}: AxiosProps) => {
+    axios.get(mainLink + cetegoryArticle, {
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+        setLoading!(false)
+    })
+}
+
+const getListArticle = ({setLoading, token, setData}: AxiosProps) => {
+    axios.get(mainLink + listArticle, {
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+        setLoading!(false)
+    })
+}
+
+const getListArticleByID = ({setLoading, token, setData, id}: AxiosProps) => {
+    axios.get(mainLink + listArticleByID(id!), {
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+        setLoading!(false)
+    })
+}
+
+const getListArticleByIDArticle = ({setLoading, token, setData, id}: AxiosProps) => {
+    axios.get(mainLink + liatArticleByIdArticle(id!), {
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+        setLoading!(false)
+    })
+}
+
+const getlistArticleBySearch = ({setLoading, token, setData, id, value}: AxiosProps) => {
+    axios.get(mainLink + liatArticleBySearch(id!,value), {
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        console.log(placement.data)
+        setLoading!(false)
+    })
+}
 const ApiAxios = {
     postRegistration,
     postLogin,
@@ -273,6 +341,11 @@ const ApiAxios = {
     getSystemNotification,
     getTypepriceInformation,
     getListProductPrice,
-    getDetailProduct
+    getDetailProduct,
+    getCategoryArticle,
+    getListArticle,
+    getListArticleByID,
+    getListArticleByIDArticle,
+    getlistArticleBySearch
 }
 export default ApiAxios

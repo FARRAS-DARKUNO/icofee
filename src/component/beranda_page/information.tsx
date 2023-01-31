@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
     View,
     StyleSheet,
@@ -9,16 +10,28 @@ import Icons from "react-native-vector-icons/MaterialCommunityIcons";
 import Card from "../card";
 import { useNavigation } from "@react-navigation/native";
 import NamePage from "../../util/namePage";
+import ApiAxios from "../../util/axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Loading from "../loading";
+import convertDete from "../../util/convert_dete";
+import RemoveTagHTML from "../../util/remove_tag_html";
 
 const Information = () => {
 
     const navigate = useNavigation()
 
+    const [isLoading, setLoading] = useState<boolean>(true)
+    const [data, setData] = useState<any>(null)
+
     //@ts-ignore
     const gotoPageInformasiBudaya = () => navigate.navigate(NamePage.InformasiBudiDaya)
 
-    let img = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-    let text = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+    useEffect(() => {
+        AsyncStorage.getItem("Token")
+            .then(token => {
+                ApiAxios.getListArticle({ setLoading: setLoading, setData: setData, token: token! })
+            })
+    }, [isLoading])
 
     return (
         <View style={styles.continer}>
@@ -35,14 +48,23 @@ const Information = () => {
                     />
                 </TouchableOpacity>
             </View>
-
-            <Card.InformationCard tittle={'halloooo...'} body={text} image={img} time={'Senin, 29 juli 2019'} />
-            <Card.InformationCard tittle={'halloooo...'} body={text} image={img} time={'Senin, 29 juli 2019'} />
-            <Card.InformationCard tittle={'halloooo...'} body={text} image={img} time={'Senin, 29 juli 2019'} />
-            <Card.InformationCard tittle={'halloooo...'} body={text} image={img} time={'Senin, 29 juli 2019'} />
-            <Card.InformationCard tittle={'halloooo...'} body={text} image={img} time={'Senin, 29 juli 2019'} />
-            <Card.InformationCard tittle={'halloooo...'} body={text} image={img} time={'Senin, 29 juli 2019'} />
-
+            {
+                isLoading ? <Loading />
+                    : <View>
+                        {
+                            data.map((placement: any) => (
+                                <Card.InformationCard
+                                    tittle={placement.title}
+                                    body={RemoveTagHTML(placement.body)}
+                                    image={placement.thumbnail}
+                                    time={convertDete(placement.created_at)}
+                                    id={placement.id}
+                                    key={placement.id}
+                                />
+                            ))
+                        }
+                    </View>
+            }
         </View>
     )
 }

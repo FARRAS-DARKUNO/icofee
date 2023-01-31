@@ -62,8 +62,8 @@ const NavigationBar = () => {
                         name={data.name}
                         component={data.page}
                         options={{
-                            tabBarIcon: ({ color, size }) => (
-                                <View style={styles.icon}>
+                            tabBarIcon: ({ color, size, }) => (
+                                <View style={[styles.icon]}>
                                     <Icon name={data.icon} color={color} size={25} />
                                     <Text style={[{ color: color }, STYLE_GLOBAL.SMALL]}>
                                         {data.name}

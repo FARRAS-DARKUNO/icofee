@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {
     Text,
     StyleSheet,
@@ -12,21 +12,42 @@ import { useNavigation, useRoute } from "@react-navigation/native"
 import Header from "../component/header"
 import Icon from "react-native-vector-icons/Ionicons"
 import Card from "../component/card"
+import ApiAxios from "../util/axios"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import RemoveTagHTML from "../util/remove_tag_html"
+import convertDete from "../util/convert_dete"
+import Loading from "../component/loading"
 
 const DinamicListInformation = () => {
 
     const navigate = useNavigation()
     const goBack = () => navigate.goBack()
     //@ts-ignore
-    const { name } = useRoute().params
+    const { name, id } = useRoute().params
 
-    const [text, onChangeText] = React.useState<string>("");
+    console.log(id)
+
+    const [text, onChangeText] = React.useState<string>("")
+    const [isLoading, setLoading] = useState<boolean>(true)
+    const [data, setData] = useState<any>(null)
 
     const Dummie = () => console.log('hallo')
 
     let img = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
     let texts = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
 
+    useEffect(() => {
+        AsyncStorage.getItem("Token")
+            .then(token => {
+                ApiAxios.getlistArticleBySearch({
+                    setLoading: setLoading,
+                    token: token!,
+                    id: id,
+                    setData: setData,
+                    value: text,
+                })
+            })
+    }, [isLoading, text])
 
     return (
         <SafeAreaView style={styles.container}>
@@ -47,13 +68,23 @@ const DinamicListInformation = () => {
                     </View>
                 </View>
             </View>
-            <ScrollView>
-                <Card.InformationCard response={Dummie} tittle={'halloooo...'} body={texts} image={img} time={'Senin, 29 juli 2019'} />
-                <Card.InformationCard response={Dummie} tittle={'halloooo...'} body={texts} image={img} time={'Senin, 29 juli 2019'} />
-                <Card.InformationCard response={Dummie} tittle={'halloooo...'} body={texts} image={img} time={'Senin, 29 juli 2019'} />
-                <Card.InformationCard response={Dummie} tittle={'halloooo...'} body={texts} image={img} time={'Senin, 29 juli 2019'} />
-                <Card.InformationCard response={Dummie} tittle={'halloooo...'} body={texts} image={img} time={'Senin, 29 juli 2019'} />
-            </ScrollView>
+            {
+                isLoading ? <Loading /> :
+                    <ScrollView>
+                        {
+                            data.length == 0 ? <Loading /> : data.map((placement: any) => (
+                                <Card.InformationCard
+                                    tittle={placement.title}
+                                    body={RemoveTagHTML(placement.body)}
+                                    image={placement.thumbnail}
+                                    time={convertDete(placement.created_at)}
+                                    id={placement.id}
+                                    key={placement.id}
+                                />
+                            ))
+                        }
+                    </ScrollView>
+            }
         </SafeAreaView>
     )
 }
