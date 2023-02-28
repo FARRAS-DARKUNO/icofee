@@ -8,7 +8,7 @@ import {
 import STYLE_GLOBAL from '../../util/style_global';
 import { BoxInputData } from '../../util/interface';
 
-const TextInputs = ({ input, placeholders, tittle, values, isPassword }: BoxInputData) => {
+const TextInputs = ({ input, placeholders, tittle, values, isPassword, }: BoxInputData) => {
 
     let temp = isPassword || false
 

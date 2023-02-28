@@ -11,11 +11,20 @@ import STYLE_GLOBAL from "../util/style_global"
 import Header from "../component/header"
 import Card from "../component/card"
 import PengajuanCm from "../component/pengajian"
+import { useNavigation } from "@react-navigation/native"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const Pengajuan = () => {
-
+    const navigate = useNavigation()
     const [choice, setChoice] = useState<string>('add')
-
+    useEffect(() => {
+        AsyncStorage.getItem('Token').then(token => {
+            if (token == null) {
+                //@ts-ignore
+                navigate.navigate(NamePage.LandingPage)
+            }
+        })
+    })
     return (
         <SafeAreaView style={[styles.container]}>
             <StatusBar

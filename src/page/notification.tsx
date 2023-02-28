@@ -23,6 +23,10 @@ const Notification = () => {
     useEffect(() => {
         AsyncStorage.getItem("Token")
             .then(token => {
+                if (token == null) {
+                    //@ts-ignore
+                    navigate.navigate(NamePage.LandingPage)
+                }
                 AsyncStorage.getItem("Id")
                     .then(id => {
                         ApiAxios.getAllNotification({ id: id!, token: token!, setLoading: setLoading, setData: setdata })

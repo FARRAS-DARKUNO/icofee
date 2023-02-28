@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
     StyleSheet,
     SafeAreaView,
@@ -9,10 +9,19 @@ import Header from "../component/header"
 import STYLE_GLOBAL from "../util/style_global"
 import BerandaCm from "../component/beranda_page"
 import Card from "../component/card"
+import { useNavigation } from "@react-navigation/native"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const Beranda = () => {
-
-
+    const navigate = useNavigation()
+    useEffect(() => {
+        AsyncStorage.getItem('Token').then(token => {
+            if (token == null) {
+                //@ts-ignore
+                navigate.navigate(NamePage.LandingPage)
+            }
+        })
+    })
     return (
         <SafeAreaView style={[styles.container]}>
             <StatusBar

@@ -25,7 +25,7 @@ export interface CardProps {
 
 export interface BoxInputData {
     tittle: string,
-    input? : ReactSetter<string>,
+    input? : ReactSetter<any>,
     picker? : ReactSetter<any>,
     placeholders? : string,
     values? : any,
@@ -62,4 +62,5 @@ export interface AxiosProps {
     setStatus ? : ReactSetter<any>
     setData? : ReactSetter<any>
     setDate ? : ReactSetter<Date>
+    setValue? :ReactSetter<any>
 }

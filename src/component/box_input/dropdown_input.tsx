@@ -16,7 +16,7 @@ const DropdownInputs = ({ picker, placeholders, tittle, values, dropList }: BoxI
 
     return (
         <View style={styles.container}>
-            <View style={{ flex: 1 }}>
+            <View >
                 <Text style={[STYLE_GLOBAL.PAGE, STYLE_GLOBAL.BLACK_COLOR]}>
                     {" " + tittle}
                 </Text>
@@ -32,6 +32,7 @@ const DropdownInputs = ({ picker, placeholders, tittle, values, dropList }: BoxI
                     data={dropList}
                     onSelect={(selectedItem, index) => {
                         let temp = index + 2
+                        console.log(temp)
                         //@ts-ignore
                         picker(temp)
                     }}

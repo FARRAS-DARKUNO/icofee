@@ -10,9 +10,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import Loading from "../component/loading"
 import axios from "axios"
 import { mainLink, profil } from "../util/axios"
+import { useNavigation } from "@react-navigation/native"
+import NamePage from "../util/namePage"
 
 const Profil = () => {
 
+    const navigate = useNavigation()
 
     const [isLaoding, setLoading] = useState<boolean>(true)
     const [image, setImage] = useState<string>('')
@@ -23,6 +26,10 @@ const Profil = () => {
     useEffect(() => {
         AsyncStorage.getItem("Token")
             .then(token => {
+                if (token == null) {
+                    //@ts-ignore
+                    navigate.navigate(NamePage.LandingPage)
+                }
                 AsyncStorage.getItem("Id")
                     .then(id => {
                         //@ts-ignore

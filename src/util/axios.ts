@@ -2,12 +2,13 @@ import axios from "axios"
 import Alert from "../component/alert"
 import { AxiosProps } from "./interface"
 
-export const mainLink = "http://47.250.128.109:8000"
+export const mainLink = 'http://18.142.64.190:8000'
 
 export const registrationLink = "/api/v1/cofeetera-users/user-registration/"
 export const loginLink = "/api/v1/cofeetera-users/user-login/"
 export const forgetPassword = "/api/v1/cofeetera-users/reset-password/"
 export const productType = '/api/v1/products/product-types/'
+export const addProduct = '/api/v1/products/product-list/'
 export const changePassword = (id : string) => {
     return `/api/v1/cofeetera-users/update-password/${id}/`
 }
@@ -47,6 +48,17 @@ export const liatArticleByIdArticle = (id_articles_category : string) => {
 }
 export const liatArticleBySearch = (id_articles_category : string, search: string ) => {
     return `/api/v1/articles/list-articles/?category_id=${id_articles_category}&search=${search}`
+}
+export const editProfile = (user_id : string) => {
+    return `/api/v1/cofeetera-users/user-data/${user_id}/`
+}
+export const editDataStore = `/api/v1/products/store-datas/`
+
+export const listMyProduct = (user_id : string)=>{
+    return `/api/v1/products/product-list/?user_id=${user_id}&verification_status=1`
+}
+export const updateProduct = (id : string) => {
+    return `/api/v1/products/product-list/${id}/`
 }
 
 const postRegistration = ({ action, data, setLoading }: AxiosProps) => {
@@ -143,7 +155,7 @@ const postForgetPassowrd = ({ action, data, setLoading, setId }: AxiosProps) =>{
 const putChangePassword = ({ action, data, setLoading, value}: AxiosProps) => {
     axios.patch(mainLink + changePassword(value),data)
     .then(placemen => {
-        console.log(placemen)
+        // console.log(placemen)
         //@ts-ignore
         setLoading(false)
         
@@ -185,7 +197,7 @@ const getAllNotification = ({id, setData, setLoading, token}: AxiosProps) => {
     .then(placement => {
         setData!(placement.data)
         setLoading!(false)
-        console.log(placement.data)
+        // console.log(placement.data)
     })
 }
 
@@ -195,7 +207,7 @@ const getUerNotification = ({id, setData, setLoading, token}: AxiosProps) => {
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
     })
     .finally(()=>{
         axios.patch(mainLink + patchlNotificationUser(id!),
@@ -206,7 +218,7 @@ const getUerNotification = ({id, setData, setLoading, token}: AxiosProps) => {
             headers: { "Authorization": `Token ${token}` }
         })
         .then(value => {
-            console.log("mantaps",value)
+            // console.log("mantaps",value)
             setLoading!(false)
         })
     })
@@ -218,7 +230,7 @@ const getSystemNotification = ({id, setData, setLoading, token}: AxiosProps) => 
     .then(placement => {
         setData!(placement.data)
         setLoading!(false)
-        console.log(placement.data)
+        // console.log(placement.data)
     })
 }
 const getTypepriceInformation = ({setLoading, token, setData}: AxiosProps) => {
@@ -227,7 +239,7 @@ const getTypepriceInformation = ({setLoading, token, setData}: AxiosProps) => {
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
         setLoading!(false)
     })
 }
@@ -238,7 +250,7 @@ const getListProductPrice = ({setLoading, token, setData, id}: AxiosProps) => {
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
         setLoading!(false)
     })
 }
@@ -269,7 +281,7 @@ const getDetailProduct = ({setLoading, token, setData, id, setStatus}: AxiosProp
                 },
             ]
             setStatus!(temp)
-            console.log(value.data)
+            // console.log(value.data)
             setLoading!(false)
         })
     })
@@ -282,7 +294,7 @@ const getCategoryArticle = ({setLoading, token, setData}: AxiosProps) => {
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
         setLoading!(false)
     })
 }
@@ -293,7 +305,7 @@ const getListArticle = ({setLoading, token, setData}: AxiosProps) => {
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
         setLoading!(false)
     })
 }
@@ -304,7 +316,7 @@ const getListArticleByID = ({setLoading, token, setData, id}: AxiosProps) => {
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
         setLoading!(false)
     })
 }
@@ -315,7 +327,7 @@ const getListArticleByIDArticle = ({setLoading, token, setData, id}: AxiosProps)
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
         setLoading!(false)
     })
 }
@@ -326,10 +338,104 @@ const getlistArticleBySearch = ({setLoading, token, setData, id, value}: AxiosPr
     })
     .then(placement => {
         setData!(placement.data)
-        console.log(placement.data)
+        // console.log(placement.data)
         setLoading!(false)
     })
 }
+
+const pastchEditProfile = ({setLoading, token, value, id, action} : AxiosProps) => {
+axios.patch(mainLink + editProfile(id!), value,{
+        headers: { 
+            "Authorization": `Token ${token}` ,
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+        }
+    })
+    .then(placemen => {
+        //@ts-ignore
+        setLoading(false)
+        // console.log(placemen.data)
+    }).then(()=>{
+        Alert.ActionAlert(
+                {
+                    title: "Berhasil",
+                    massage: "Data berhasil berubah",
+                    action: action,
+                }
+            )
+    })
+}
+
+const postEditDataStore = ({setLoading, token, value,action} : AxiosProps) => {
+axios.post(mainLink + editDataStore, value,{
+        headers: { 
+            "Authorization": `Token ${token}` ,
+        }
+    })
+    .then(placemen => {
+        //@ts-ignore
+        setLoading(false)
+        console.log(placemen.data)
+    }).then(()=>{
+        Alert.ActionAlert(
+                {
+                    title: "Berhasil",
+                    massage: "Data berhasil berubah",
+                    action: action,
+                }
+            )
+    })
+}
+
+const postAddProduct = ({setLoading, token, value, action} : AxiosProps) => {
+    axios.post(mainLink + addProduct, value,{
+            headers: { 
+                "Authorization": `Token ${token}` ,
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+        .then(placemen => {
+            //@ts-ignore
+            setLoading(false)
+            console.log(placemen.data)
+        }).catch(error => console.log(error))
+}
+
+const getListMyProduct = ({setLoading, token, setData, id, setValue}: AxiosProps) => {
+    axios.get(mainLink + listMyProduct(id!), {
+        headers: { "Authorization": `Token ${token}` }
+    })
+    .then(placement => {
+        setData!(placement.data)
+        // console.log(placement.data)
+        
+        if (placement.data.length != 0){
+            for (let i = 0; i < placement.data.length; i++){
+                setValue!((oldArray : any ) => [...oldArray, (placement.data[i].name)])
+            }
+        }
+
+        setLoading!(false)
+        
+    })
+}
+
+const patchProduct = ({setLoading, token, value, action, id} : AxiosProps) => {
+    axios.patch(mainLink + updateProduct(id!), value,{
+            headers: { 
+                "Authorization": `Token ${token}` ,
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+        .then(placemen => {
+            //@ts-ignore
+            setLoading(false)
+            console.log(placemen.data)
+        }).catch(error => console.log("hallo",error))
+}
+
 const ApiAxios = {
     postRegistration,
     postLogin,
@@ -346,6 +452,11 @@ const ApiAxios = {
     getListArticle,
     getListArticleByID,
     getListArticleByIDArticle,
-    getlistArticleBySearch
+    getlistArticleBySearch,
+    pastchEditProfile,
+    postEditDataStore,
+    postAddProduct,
+    getListMyProduct,
+    patchProduct,
 }
 export default ApiAxios
