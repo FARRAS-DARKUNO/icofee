@@ -10,6 +10,8 @@ import STYLE_GLOBAL from "../util/style_global"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import NamePage from "../util/namePage"
 import { useNavigation } from "@react-navigation/native"
+import axios from "axios"
+import { mainLink, profil } from "../util/axios"
 
 const SplashScreen = () => {
 
@@ -25,10 +27,22 @@ const SplashScreen = () => {
                     }, 3000)
                 }
                 else {
-                    setTimeout(() => {
-                        //@ts-ignore
-                        navigate.navigate(NamePage.NavigationBar)
-                    }, 3000)
+                    AsyncStorage.getItem("Id").then(id => {
+                        axios.get(mainLink + profil(id!),
+                            {
+                                headers: { "Authorization": `Token ${placement}` }
+                            }).then(value => {
+                                console.log(value.data)
+                                AsyncStorage.setItem("Verification", value.data.verification_status).then(() => {
+                                    setTimeout(() => {
+                                        //@ts-ignore
+                                        navigate.navigate(NamePage.NavigationBar)
+                                    }, 1000)
+                                })
+
+                            })
+                    })
+
                 }
             })
     }

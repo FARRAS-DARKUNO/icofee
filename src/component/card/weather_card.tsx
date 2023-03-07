@@ -13,14 +13,14 @@ const WeatherCard = () => {
                 <View style={styles.boxInCard}>
                     <View style={styles.box50}>
                         <Text style={[STYLE_GLOBAL.HEADER1, STYLE_GLOBAL.BLACK_COLOR]}>
-                            Hujan
+                            Coming Soon
                         </Text>
                     </View>
                     <View style={styles.box50}>
                         <Image source={{
                             uri: "https://res.cloudinary.com/diyu8lkwy/image/upload/v1670415239/itera%20herro%20icon/pngwing_2_odiwie.png",
                         }} style={styles.img} />
-                        <Text style={[STYLE_GLOBAL.HEADER1, STYLE_GLOBAL.BLACK_COLOR]}> 30 C</Text>
+                        <Text style={[STYLE_GLOBAL.HEADER1, STYLE_GLOBAL.BLACK_COLOR]}> 24 C</Text>
                     </View>
                 </View>
             </View>

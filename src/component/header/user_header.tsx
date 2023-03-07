@@ -23,8 +23,13 @@ const UserHeaders = () => {
             .then(token => {
                 AsyncStorage.getItem("Id")
                     .then(id => {
-                        //@ts-ignore
-                        ApiAxios.getProfil({ token: token, id: id, setLoading: setLoading, setImage: setImage, setName: setName })
+                        try {
+                            //@ts-ignore
+                            ApiAxios.getProfil({ token: token, id: id, setLoading: setLoading, setImage: setImage, setName: setName })
+                        } catch {
+                            console.log("haloooooooooo")
+                        }
+
 
                     })
             })

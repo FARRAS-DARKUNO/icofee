@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import {
     Text,
     StyleSheet,
-    SafeAreaView,
     View,
+    SafeAreaView,
     ScrollView,
     Image
 } from "react-native"
@@ -13,59 +13,64 @@ import Header from "../component/header"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import ApiAxios from "../util/axios"
 import Loading from "../component/loading"
-import convertDete from "../util/convert_dete"
-import RemoveTagHTML from "../util/remove_tag_html"
 
-const DetailArtikel = () => {
+const DetailML = () => {
 
     //@ts-ignore
-    const { id } = useRoute().params
+    const { image } = useRoute().params
+
+    console.log(image)
+
+    const [data, setData] = useState<any>(null)
 
     const navigate = useNavigation()
     const goback = () => navigate.goBack()
 
     const [isLoading, setLoading] = useState<boolean>(true)
-    const [data, setData] = useState<any>(null)
 
-    useEffect(() => {
-        AsyncStorage.getItem("Token")
-            .then(token => {
-                ApiAxios.getListArticleByID({
+    const getData = () => {
+        AsyncStorage.getItem("Token").then(token => {
+            AsyncStorage.getItem("Id").then(id => {
+                const finalData = new FormData()
+
+                finalData.append('picture', image)
+                finalData.append('user_id', id)
+
+                ApiAxios.postML({
                     setLoading: setLoading,
                     token: token!,
-                    setData: setData,
-                    id: id
+                    value: finalData,
+                    setValue: setData
                 })
             })
+        })
+
+    }
+
+    useEffect(() => {
+        getData()
     }, [isLoading])
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header.BackHeader name="Detail Artikel" action={goback} />
+            <Header.BackHeader name="Detail Data" action={goback} />
             <View style={STYLE_GLOBAL.ENTER10} />
             {
                 isLoading ? <Loading /> :
                     <ScrollView>
-                        <View style={[styles.boxImage, styles.padding]}>
-                            <Image source={{ uri: data.thumbnail }} style={styles.image} />
-                        </View>
+
                         <View style={[styles.padding]}>
-                            <Text style={[STYLE_GLOBAL.PRIMARI_COLOR, STYLE_GLOBAL.HEADER2]}>{data.title}</Text>
-                            <Text style={[STYLE_GLOBAL.TERSIER_COLOR, STYLE_GLOBAL.HEADER3]}>
-                                {convertDete(data.created_at)}
-                            </Text>
-                            <Text style={[STYLE_GLOBAL.BLACK_COLOR, STYLE_GLOBAL.PAGE]}>
-                                {`Kategori : ${data.category_name}`}
-                            </Text>
+                            <Text style={[STYLE_GLOBAL.PRIMARI_COLOR, STYLE_GLOBAL.HEADER2]}>Hasil dari Foto</Text>
                             <View style={STYLE_GLOBAL.ENTER30} />
                             <Text style={[styles.textDetail, STYLE_GLOBAL.BLACK_COLOR, STYLE_GLOBAL.PAGE]}>
-                                {RemoveTagHTML(data.body)}
+                                {data.result}
                             </Text>
                         </View>
                     </ScrollView>
             }
         </SafeAreaView>
     )
+
 }
 
 const styles = StyleSheet.create({
@@ -92,4 +97,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default DetailArtikel
+export default DetailML

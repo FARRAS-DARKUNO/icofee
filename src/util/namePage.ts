@@ -15,7 +15,8 @@ const NamePage = {
     ForgetPasswordFirst : 'ForgetPasswordFirst',
     ForgetPasswordLast : 'ForgetPasswordLast',
     EditProfil : 'EditProfil',
-    EditDataUsaha : 'EditDataUsaha'
+    EditDataUsaha : 'EditDataUsaha',
+    DetailML : 'DetailML'
 }
 
 export default NamePage

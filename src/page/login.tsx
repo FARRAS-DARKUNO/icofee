@@ -40,18 +40,26 @@ const Login = () => {
             password: password,
         })
             .then(placement => {
+                console.log(placement.data)
                 AsyncStorage.setItem("Token", placement.data.token)
                     .then(() => {
                         AsyncStorage.setItem("Id", placement.data.user.id.toString())
                             .then(() => {
-                                setLoading(false)
-                                Alert.ActionAlert(
-                                    {
-                                        title: "Login Berhasil",
-                                        massage: "Anda berhasil melakukan Login",
-                                        action: goNavigationBar,
-                                    }
-                                )
+                                AsyncStorage.setItem("Role", placement.data.user.role.toString())
+                                    .then(() => {
+                                        AsyncStorage.setItem("Verification", placement.data.user.verification_status.toString())
+                                            .then(() => {
+                                                setLoading(false)
+                                                Alert.ActionAlert(
+                                                    {
+                                                        title: "Login Berhasil",
+                                                        massage: "Anda berhasil melakukan Login",
+                                                        action: goNavigationBar,
+                                                    }
+                                                )
+                                            })
+                                    })
+
                             })
                     })
                 //@ts-ignore

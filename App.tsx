@@ -20,6 +20,7 @@ import RegisterFirst from './src/page/register_first';
 import RegisterLast from './src/page/register_last';
 import ForgetPasswordFirst from './src/page/forget_password_first';
 import ForgetPasswordLast from './src/page/forget_password_next';
+import DetailML from './src/page/detail_ml';
 
 
 const Stack = createNativeStackNavigator();
@@ -51,6 +52,7 @@ const App = () => {
         <Stack.Screen name={NamePage.NotificationDetail} component={NotificationDetail} />
         <Stack.Screen name={NamePage.EditProfil} component={EditProfil} />
         <Stack.Screen name={NamePage.EditDataUsaha} component={EditDataUsaha} />
+        <Stack.Screen name={NamePage.DetailML} component={DetailML} />
       </Stack.Navigator>
     </NavigationContainer>
   )

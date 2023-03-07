@@ -5,6 +5,7 @@ import {
 import DinamicCard from "../card/dynamic_card"
 import NamePage from "../../util/namePage"
 import { useNavigation } from "@react-navigation/native"
+import MistakeAlert from "../alert/mistake_alert"
 
 const Grip = () => {
 
@@ -29,9 +30,9 @@ const Grip = () => {
             respons: () => navigate.navigate(NamePage.InformasiBudiDaya)
         },
         {
-            image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-            tittle: "Kopi Pak Hayam Khuruk",
-            respons: () => console.log('Mantapas')
+            image: "https://res.cloudinary.com/diyu8lkwy/image/upload/v1672509632/icon/Group_205_tihhke.png",
+            tittle: "Informasi Lebih Lanjut",
+            respons: () => MistakeAlert({ title: "Coming Soon", massage: "Coming Soon" })
         },
     ]
 

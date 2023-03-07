@@ -2,13 +2,15 @@ import axios from "axios"
 import Alert from "../component/alert"
 import { AxiosProps } from "./interface"
 
-export const mainLink = 'http://18.142.64.190:8000'
+// export const mainLink = 'http://18.142.64.190:8000'
+export const mainLink = 'http://47.250.128.109:8000'
 
 export const registrationLink = "/api/v1/cofeetera-users/user-registration/"
 export const loginLink = "/api/v1/cofeetera-users/user-login/"
 export const forgetPassword = "/api/v1/cofeetera-users/reset-password/"
 export const productType = '/api/v1/products/product-types/'
 export const addProduct = '/api/v1/products/product-list/'
+export const ml = '/api/v1/cofee-pic-ml/classify/'
 export const changePassword = (id : string) => {
     return `/api/v1/cofeetera-users/update-password/${id}/`
 }
@@ -315,6 +317,7 @@ const getListArticleByID = ({setLoading, token, setData, id}: AxiosProps) => {
         headers: { "Authorization": `Token ${token}` }
     })
     .then(placement => {
+        console.log(placement.data)
         setData!(placement.data)
         // console.log(placement.data)
         setLoading!(false)
@@ -436,7 +439,24 @@ const patchProduct = ({setLoading, token, value, action, id} : AxiosProps) => {
         }).catch(error => console.log("hallo",error))
 }
 
+const postML = ({setLoading, token, value, setValue} : AxiosProps) => {
+    axios.post(mainLink + ml, value,{
+            headers: { 
+                "Authorization": `Token ${token}` ,
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+        .then(placemen => {
+            
+            console.log(placemen.data)
+            setValue!(placemen.data)
+            setLoading!(false)
+        }).catch(error => console.log(error))
+}
+
 const ApiAxios = {
+    postML,
     postRegistration,
     postLogin,
     postForgetPassowrd,

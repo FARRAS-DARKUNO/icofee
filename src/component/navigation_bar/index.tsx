@@ -10,8 +10,11 @@ import Pengajuan from "../../page/pengajuan"
 import CameraAi from "../../page/camera_ai"
 import Notification from "../../page/notification"
 import Profil from "../../page/profil"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NavigationBar = () => {
+
+    const [isFarmer, setFarmer] = React.useState(false)
 
     const Tab = createBottomTabNavigator();
 
@@ -43,7 +46,36 @@ const NavigationBar = () => {
         },
     ]
 
+    const navigationDataNonFarmer = [
+        {
+            page: Beranda,
+            name: "Beranda",
+            icon: "home-outline"
+        },
+        {
+            page: CameraAi,
+            name: "CofeeTera Cam",
+            icon: 'ios-camera-outline'
+        },
+        {
+            page: Notification,
+            name: "Pemberitahuan",
+            icon: 'md-notifications-outline'
+        },
+        {
+            page: Profil,
+            name: "Profil",
+            icon: 'md-person-circle-outline'
+        },
+    ]
 
+    React.useEffect(() => {
+        AsyncStorage.getItem("Role").then(value => {
+            if (value != null && value == '2') {
+                setFarmer(true)
+            }
+        })
+    }, [isFarmer])
 
     return (
         <Tab.Navigator
@@ -56,22 +88,39 @@ const NavigationBar = () => {
                 tabBarHideOnKeyboard: true,
             }}>
             {
-                navigationData.map((data) => (
-                    <Tab.Screen
-                        key={data.name}
-                        name={data.name}
-                        component={data.page}
-                        options={{
-                            tabBarIcon: ({ color, size, }) => (
-                                <View style={[styles.icon]}>
-                                    <Icon name={data.icon} color={color} size={25} />
-                                    <Text style={[{ color: color }, STYLE_GLOBAL.SMALL]}>
-                                        {data.name}
-                                    </Text>
-                                </View>
-                            ),
-                        }} />
-                ))
+                isFarmer ?
+                    navigationData.map((data) => (
+                        <Tab.Screen
+                            key={data.name}
+                            name={data.name}
+                            component={data.page}
+                            options={{
+                                tabBarIcon: ({ color, size, }) => (
+                                    <View style={[styles.icon]}>
+                                        <Icon name={data.icon} color={color} size={25} />
+                                        <Text style={[{ color: color }, STYLE_GLOBAL.SMALL]}>
+                                            {data.name}
+                                        </Text>
+                                    </View>
+                                ),
+                            }} />
+                    )) :
+                    navigationDataNonFarmer.map((data) => (
+                        <Tab.Screen
+                            key={data.name}
+                            name={data.name}
+                            component={data.page}
+                            options={{
+                                tabBarIcon: ({ color, size, }) => (
+                                    <View style={[styles.icon]}>
+                                        <Icon name={data.icon} color={color} size={25} />
+                                        <Text style={[{ color: color }, STYLE_GLOBAL.SMALL]}>
+                                            {data.name}
+                                        </Text>
+                                    </View>
+                                ),
+                            }} />
+                    ))
             }
         </Tab.Navigator>
     )

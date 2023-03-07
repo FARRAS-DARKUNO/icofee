@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     View,
     StyleSheet,
@@ -20,6 +20,8 @@ const AddSide = () => {
 
     const navigate = useNavigation()
 
+    const [isVerif, setVerif] = useState(false)
+
     const valuePick = ["Olahan", "Mentah"]
     const [name, setName] = useState<string>('')
     const [pick, setPick] = useState<any>(null)
@@ -38,8 +40,22 @@ const AddSide = () => {
         setImage(null)
         setDescription('')
     }
-    //@ts-ignore
-    const gotoEdit = () => navigate.navigate(NamePage.EditDataUsaha)
+
+    const gotoEdit = () => {
+        if (isVerif) {
+            //@ts-ignore
+            navigate.navigate(NamePage.EditDataUsaha)
+        }
+        else {
+            Alert.ActionAlert(
+                {
+                    title: "Akun Belum Verifikasi",
+                    massage: "Akun Anda belum Terverikifasi",
+                    action: () => console.log('halo'),
+                }
+            )
+        }
+    }
 
     const onTab = () => {
         AsyncStorage.getItem('id_toko')
@@ -86,6 +102,14 @@ const AddSide = () => {
                 }
             })
     }
+
+    useEffect(() => {
+        AsyncStorage.getItem("Verification").then(value => {
+            if (value != null && value == "1") {
+                setVerif(true)
+            }
+        })
+    }, [isVerif])
 
     return (
         <>
