@@ -2,8 +2,8 @@ import axios from "axios"
 import Alert from "../component/alert"
 import { AxiosProps } from "./interface"
 
-// export const mainLink = 'http://18.142.64.190:8000'
-export const mainLink = 'http://47.250.128.109:8000'
+export const mainLink = 'http://18.142.64.190:8000'
+// export const mainLink = 'http://47.250.128.109:8000'
 
 export const registrationLink = "/api/v1/cofeetera-users/user-registration/"
 export const loginLink = "/api/v1/cofeetera-users/user-login/"
