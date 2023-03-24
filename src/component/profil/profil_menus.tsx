@@ -20,9 +20,11 @@ const ProfileMenus = () => {
     //@ts-ignore
     const gotoUsahaEdit = () => navigate.navigate(NamePage.EditDataUsaha)
 
-    const gotoLogOut = () => {
-        AsyncStorage.removeItem('Token')
-        AsyncStorage.removeItem('Id')
+    const gotoLogOut = async () => {
+        await AsyncStorage.removeItem('Token')
+        await AsyncStorage.removeItem('Id')
+        await AsyncStorage.removeItem('Role')
+        await AsyncStorage.removeItem('Verification')
         //@ts-ignore
         navigate.navigate(NamePage.LandingPage)
     }
@@ -42,7 +44,9 @@ const ProfileMenus = () => {
     return (
         <View style={styles.container}>
             <Button.ProfilButton response={gotoProfilEdit} tiitle={"Edit Profile"} iconLeft={"pencil-outline"} iconRight={"chevron-right"} />
-            <Button.ProfilButton response={gotoUsahaEdit} tiitle={"Edit Data Usaha"} iconLeft={"pencil-outline"} iconRight={"chevron-right"} />
+            {
+                isVerif ? <Button.ProfilButton response={gotoUsahaEdit} tiitle={"Edit Data Usaha"} iconLeft={"pencil-outline"} iconRight={"chevron-right"} /> : null
+            }
             {
                 isVerif ? <Button.ProfilButton response={Dummie} tiitle={"Pengaturan"} iconLeft={"wrench-outline"} iconRight={"chevron-right"} /> : null
             }

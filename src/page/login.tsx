@@ -38,33 +38,47 @@ const Login = () => {
         axios.post(mainLink + loginLink, {
             username: username,
             password: password,
+        }).then(async (placement: any) => {
+            await AsyncStorage.setItem("Token", placement.data.token);
+            await AsyncStorage.setItem("Role", placement.data.user.role.toString());
+            await AsyncStorage.setItem("Verification", placement.data.user.verification_status.toString());
+            await AsyncStorage.setItem("Id", placement.data.user.id.toString());
+            console.log(placement.data)
+            setLoading(false);
+            Alert.ActionAlert(
+                {
+                    title: "Login Berhasil",
+                    massage: "Anda berhasil melakukan Login",
+                    action: goNavigationBar,
+                }
+            );
         })
-            .then(placement => {
-                console.log(placement.data)
-                AsyncStorage.setItem("Token", placement.data.token)
-                    .then(() => {
-                        AsyncStorage.setItem("Id", placement.data.user.id.toString())
-                            .then(() => {
-                                AsyncStorage.setItem("Role", placement.data.user.role.toString())
-                                    .then(() => {
-                                        AsyncStorage.setItem("Verification", placement.data.user.verification_status.toString())
-                                            .then(() => {
-                                                setLoading(false)
-                                                Alert.ActionAlert(
-                                                    {
-                                                        title: "Login Berhasil",
-                                                        massage: "Anda berhasil melakukan Login",
-                                                        action: goNavigationBar,
-                                                    }
-                                                )
-                                            })
-                                    })
+            // .then(placement => {
+            //     console.log(placement.data)
+            //     AsyncStorage.setItem("Token", placement.data.token)
+            //         .then( async () => {
+            //             await AsyncStorage.setItem("Id", placement.data.user.id.toString())
+            //                 .then(() => {
+            //                     AsyncStorage.setItem("Role", placement.data.user.role.toString())
+            //                         .then(() => {
+            //                             AsyncStorage.setItem("Verification", placement.data.user.verification_status.toString())
+            //                                 .then(() => {
+            //                                     setLoading(false)
+            //                                     Alert.ActionAlert(
+            //                                         {
+            //                                             title: "Login Berhasil",
+            //                                             massage: "Anda berhasil melakukan Login",
+            //                                             action: goNavigationBar,
+            //                                         }
+            //                                     )
+            //                                 })
+            //                         })
 
-                            })
-                    })
-                //@ts-ignore
+            //                 })
+            //         })
+            //     //@ts-ignore
 
-            })
+            // })
             .catch(err => {
                 setLoading(false)
                 Alert.MistakeAlert(

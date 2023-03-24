@@ -20,7 +20,7 @@ const SplashScreen = () => {
     const checkToken = () => {
         AsyncStorage.getItem("Token")
             .then(placement => {
-                if (placement == null) {
+                if (placement == null || placement == '') {
                     setTimeout(() => {
                         //@ts-ignore
                         navigate.navigate(NamePage.LandingPage)

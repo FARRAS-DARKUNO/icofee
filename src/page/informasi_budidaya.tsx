@@ -39,7 +39,7 @@ const InformasiBudiDaya = () => {
 
     return (
         <SafeAreaView style={[styles.container, STYLE_GLOBAL.BACKGROUND_WHITE]}>
-            <Header.BackHeader name="Informasi dan Artikel Budaya" action={goBack} />
+            <Header.BackHeader name="Informasi dan Artikel Budidaya" action={goBack} />
             <View style={STYLE_GLOBAL.ENTER20} />
             {
                 isLoading
